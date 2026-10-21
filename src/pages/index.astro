@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import catalogo from '../../data/catalogo.json';
+
+const items = catalogo.items ?? [];
+const featured = items.slice(0, 3);
+---
+
+<Layout title="Bretos Services — Inicio" currentPath="/">
+  <section class="hero">
+    <div class="container">
+      <div class="draft-banner" role="status">
+        BORRADOR — textos y marca pendientes de aprobación formal de Luis
+      </div>
+      <h1>Conecta tu negocio de forma más simple</h1>
+      <p class="tagline">
+        «Porque Tu Negocio, Puede Estar Mejor Conectado!!!»
+      </p>
+      <p class="tagline" style="margin-top:-0.75rem;font-size:0.95rem">
+        Soluciones NFC/QR y digitales en etapa piloto. Mercado: Chile.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn--primary" href="/catalogo">Ver catálogo</a>
+        <a class="btn btn--ghost" href="/contenidos">Centro de contenidos</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <h2>Algunas de nuestras ofertas</h2>
+      <p style="margin-bottom:1.5rem">
+        Estados según la fuente central de datos (G1). No se muestran como disponibles si no lo están.
+      </p>
+      <div class="product-grid">
+        {featured.map((item) => (
+          <ProductCard
+            id={item.id}
+            name={item.name}
+            status={item.status}
+            description={item.description}
+            category={item.category}
+          />
+        ))}
+      </div>
+      <p style="margin-top:1.5rem;text-align:center">
+        <a href="/catalogo">Ver catálogo completo →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:40rem;text-align:center">
+      <h2>Etapa piloto</h2>
+      <p>
+        Bretos Services se encuentra en etapa piloto. No existe entidad legal constituida.
+        Esta web es una vista previa de diseño y contenido; no representa un sitio de producción
+        ni una oferta comercial cerrada.
+      </p>
+      <a class="btn btn--ghost" href="/nosotros">Conocer el estado de la iniciativa</a>
+    </div>
+  </section>
+</Layout>

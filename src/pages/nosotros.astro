@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import empresa from '../../data/empresa.json';
+---
+
+<Layout
+  title="Nosotros — Bretos Services"
+  description="Estado de la iniciativa Bretos Services. Etapa piloto."
+  currentPath="/nosotros"
+>
+  <section class="section">
+    <div class="container" style="max-width:42rem">
+      <div class="draft-banner" role="status">
+        BORRADOR — pendiente de aprobación de Luis. No es texto institucional oficial.
+      </div>
+
+      <h1>Nosotros / Estado de la iniciativa</h1>
+
+      <p>
+        <strong>{empresa.name ?? "Bretos Services"}</strong> es un proyecto en
+        <strong> etapa piloto</strong>.
+      </p>
+
+      <p>
+        <strong>No existe entidad legal constituida.</strong>
+        No se presenta como sociedad, empresa formalizada ni operación consolidada.
+      </p>
+
+      {empresa.tagline && (
+        <p style="font-style:italic;color:var(--color-muted)">
+          «{empresa.tagline}»
+        </p>
+      )}
+
+      <h2 style="margin-top:2rem">Qué hacemos (borrador)</h2>
+      <p>
+        Desarrollamos soluciones de conexión digital para negocios en Chile:
+        tarjetas NFC/QR, menús digitales y servicios relacionados,
+        con foco en utilidad real y transparencia de estados comerciales.
+      </p>
+
+      <h2>Misión, visión y principios</h2>
+      <div class="placeholder-box">
+        <p>
+          <strong>Pendiente de redacción y aprobación de Luis.</strong><br />
+          Los campos de misión, visión y principios en la fuente de datos están vacíos
+          o marcados como borrador. No se inventan textos aquí.
+        </p>
+      </div>
+
+      <h2 style="margin-top:2rem">Transparencia</h2>
+      <ul style="color:var(--color-text-secondary);padding-left:1.25rem">
+        <li>Etapa: piloto</li>
+        <li>Entidad legal: no constituida</li>
+        <li>Esta página es parte de una preview de diseño (G2), no del sitio de producción</li>
+      </ul>
+    </div>
+  </section>
+</Layout>

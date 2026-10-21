@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import catalogo from '../../data/catalogo.json';
+
+const items = catalogo.items ?? [];
+---
+
+<Layout
+  title="Catálogo — Bretos Services"
+  description="Ofertas y estados comerciales de Bretos Services (fuente central G1)."
+  currentPath="/catalogo"
+>
+  <section class="section">
+    <div class="container">
+      <div class="draft-banner" role="status">
+        BORRADOR — estados y textos comerciales solo los aprobados en G1. Sin precios ni disponibilidad inventada.
+      </div>
+      <h1>Catálogo de servicios</h1>
+      <p style="margin-bottom:2rem;max-width:40rem">
+        Cada ficha muestra el estado real registrado en la fuente central.
+        «En verificación» no equivale a disponible.
+      </p>
+
+      {items.length === 0 ? (
+        <div class="empty-state">
+          <strong>Sin ofertas cargadas</strong>
+          <p>La fuente central no contiene ítems en este momento.</p>
+        </div>
+      ) : (
+        <div class="product-grid">
+          {items.map((item) => (
+            <ProductCard
+              id={item.id}
+              name={item.name}
+              status={item.status}
+              description={item.description}
+              category={item.category}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

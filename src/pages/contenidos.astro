@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Centro de contenidos — Bretos Services"
+  description="Publicaciones y recursos educativos de Bretos Services."
+  currentPath="/contenidos"
+>
+  <section class="section">
+    <div class="container">
+      <div class="draft-banner" role="status">
+        BORRADOR — estructura lista; no hay publicaciones aprobadas cargadas.
+      </div>
+
+      <h1>Centro de contenidos</h1>
+      <p style="max-width:40rem;margin-bottom:2rem">
+        Espacio para artículos, guías y recursos educativos.
+        Categorías, filtros y búsqueda se habilitarán cuando existan publicaciones autorizadas.
+      </p>
+
+      <div class="empty-state card">
+        <strong>Sin publicaciones todavía</strong>
+        <p>
+          La carpeta <code>data/contenidos/</code> no contiene Markdown aprobados.
+          No se inventan artículos ni se rellenan con contenido de demostración.
+        </p>
+      </div>
+
+      <div style="margin-top:2rem;display:grid;gap:1rem;grid-template-columns:1fr;max-width:28rem">
+        <div class="placeholder-box">
+          Filtros por categoría — pendiente de contenido
+        </div>
+        <div class="placeholder-box">
+          Buscador — pendiente de contenido
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
