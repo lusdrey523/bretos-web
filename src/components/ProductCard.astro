@@ -1,0 +1,21 @@
+---
+import StatusBadge from './StatusBadge.astro';
+
+interface Props {
+  id: string;
+  name: string;
+  status: string;
+  description?: string;
+  category?: string;
+}
+
+const { name, status, description } = Astro.props;
+---
+
+<article class="card product-card">
+  <h3>{name}</h3>
+  {description && <p class="desc">{description}</p>}
+  <div class="meta">
+    <StatusBadge status={status} />
+  </div>
+</article>

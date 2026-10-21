@@ -1,0 +1,20 @@
+---
+interface Props {
+  status: string;
+}
+
+const { status } = Astro.props;
+
+const labels: Record<string, string> = {
+  available: 'Disponible',
+  pilot: 'En etapa piloto',
+  planned: 'Planificado',
+  paused: 'Pausado',
+  verification_required: 'En verificación'
+};
+
+const label = labels[status] ?? status;
+const className = `badge badge--${status}`;
+---
+
+<span class={className}>{label}</span>

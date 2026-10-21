@@ -1,0 +1,111 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  currentPath?: string;
+}
+
+const {
+  title,
+  description = 'Bretos Services — soluciones de conexión digital para negocios en Chile. Etapa piloto.',
+  currentPath = '/'
+} = Astro.props;
+
+const nav = [
+  { href: '/', label: 'Inicio' },
+  { href: '/catalogo', label: 'Catálogo' },
+  { href: '/nosotros', label: 'Nosotros' },
+  { href: '/contenidos', label: 'Contenidos' },
+  { href: '/contacto', label: 'Contacto' }
+];
+---
+
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="logo-link" aria-label="Bretos Services — inicio">
+          <span class="logo-placeholder" aria-hidden="true">B</span>
+          <span>Breto's Services</span>
+        </a>
+
+        <nav class="nav-desktop" aria-label="Principal">
+          {nav.map((item) => (
+            <a
+              href={item.href}
+              aria-current={currentPath === item.href ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        <button
+          type="button"
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-controls="nav-mobile"
+          aria-label="Abrir menú"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <nav class="nav-mobile" id="nav-mobile" aria-label="Móvil">
+        {nav.map((item) => (
+          <a
+            href={item.href}
+            aria-current={currentPath === item.href ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </header>
+
+    <main id="contenido-principal">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>
+          Bretos Services · Etapa piloto · Sin entidad legal constituida
+        </p>
+        <p>
+          Preview G2 — no es sitio de producción
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.getElementById('menu-toggle');
+      const mobile = document.getElementById('nav-mobile');
+      if (toggle && mobile) {
+        toggle.addEventListener('click', () => {
+          const open = mobile.classList.toggle('is-open');
+          toggle.setAttribute('aria-expanded', String(open));
+          toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+        });
+      }
+    </script>
+  </body>
+</html>
