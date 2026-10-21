@@ -1,0 +1,130 @@
+name: G2 Preview Verify
+
+on:
+  push:
+    branches:
+      - g2-design-preview
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: g2-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Report SHA under test
+        run: |
+          echo "Event SHA: ${{ github.sha }}"
+          echo "Ref: ${{ github.ref }}"
+          git rev-parse HEAD
+          git log -1 --oneline
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build (Astro static)
+        run: npm run build
+
+      - name: Install Playwright Chromium
+        run: npx --yes playwright install --with-deps chromium
+
+      - name: Serve dist and capture screenshots
+        run: |
+          set -euo pipefail
+          npx --yes serve dist -l 4321 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
+
+          # Esperar a que el servidor responda
+          for i in $(seq 1 30); do
+            if curl -sf http://127.0.0.1:4321/ >/dev/null; then
+              echo "Server ready"
+              break
+            fi
+            sleep 1
+          done
+
+          mkdir -p screenshots
+
+          node <<'SCRIPT'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+
+          const widths = [1440, 768, 390];
+          const pages = [
+            { name: 'inicio', url: 'http://127.0.0.1:4321/' },
+            { name: 'catalogo', url: 'http://127.0.0.1:4321/catalogo' }
+          ];
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const outDir = path.join(process.cwd(), 'screenshots');
+            fs.mkdirSync(outDir, { recursive: true });
+
+            for (const pageInfo of pages) {
+              for (const width of widths) {
+                const context = await browser.newContext({
+                  viewport: { width, height: 900 },
+                  deviceScaleFactor: 1
+                });
+                const page = await context.newPage();
+                await page.goto(pageInfo.url, { waitUntil: 'networkidle', timeout: 30000 });
+                // Intentar abrir menú móvil solo en 390
+                if (width === 390) {
+                  const toggle = page.locator('#menu-toggle');
+                  if (await toggle.count()) {
+                    await toggle.click();
+                    await page.waitForTimeout(400);
+                  }
+                }
+                const file = path.join(outDir, `${pageInfo.name}-${width}.png`);
+                await page.screenshot({ path: file, fullPage: true });
+                console.log('Captured', file);
+                await context.close();
+              }
+            }
+
+            await browser.close();
+            console.log('All screenshots done');
+          })().catch((err) => {
+            console.error(err);
+            process.exit(1);
+          });
+          SCRIPT
+
+      - name: Upload screenshots and build log meta
+        uses: actions/upload-artifact@v4
+        with:
+          name: g2-preview-${{ github.sha }}
+          path: |
+            screenshots/
+            dist/
+          retention-days: 14
+
+      - name: Summary
+        run: |
+          echo "## G2 Preview Verify" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **SHA:** \`${{ github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Branch:** \`${{ github.ref_name }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Build:** OK (si este job terminó en verde)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Capturas:** Inicio y Catálogo a 1440 / 768 / 390 px" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          ls -la screenshots/ >> "$GITHUB_STEP_SUMMARY" || true
