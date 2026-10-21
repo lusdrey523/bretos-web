@@ -1,0 +1,55 @@
+{
+  "version": "1.0",
+  "updated": "2026-10-21",
+  "source": "Documento de alineación v1.1 + aprobación Luis",
+  "items": [
+    {
+      "id": "nfc-qr-perfiles-sociales",
+      "name": "Tarjetas NFC/QR para perfiles sociales",
+      "status": "pilot",
+      "category": "nfc-qr",
+      "description": "Tarjetas físicas con NFC y QR orientadas a perfiles de redes sociales.",
+      "notes": "Estado consignado y aprobado por Luis."
+    },
+    {
+      "id": "menus-digitales-qr",
+      "name": "Menús digitales/QR",
+      "status": "pilot",
+      "category": "nfc-qr",
+      "description": "Soluciones de menú digital accesibles por QR.",
+      "notes": "Estado consignado y aprobado por Luis."
+    },
+    {
+      "id": "nfc-qr-personalizadas-multi-enlace",
+      "name": "Tarjetas NFC/QR personalizadas o multi-enlace",
+      "status": "pilot",
+      "category": "nfc-qr",
+      "description": "Tarjetas NFC/QR con enlaces personalizados o múltiples destinos.",
+      "notes": "Estado consignado y aprobado por Luis."
+    },
+    {
+      "id": "diseno-desarrollo-web",
+      "name": "Diseño y desarrollo web",
+      "status": "pilot",
+      "category": "servicios",
+      "description": "Servicios de diseño y desarrollo de sitios web.",
+      "notes": "Estado consignado y aprobado por Luis."
+    },
+    {
+      "id": "asistentes-ia-whatsapp",
+      "name": "Asistentes de IA para WhatsApp",
+      "status": "planned",
+      "category": "ia",
+      "description": "Asistentes basados en IA orientados a atención por WhatsApp.",
+      "notes": "Estado consignado y aprobado por Luis."
+    },
+    {
+      "id": "nfc-qr-resenas-google",
+      "name": "Tarjetas NFC/QR para reseñas de Google",
+      "status": "verification_required",
+      "category": "nfc-qr",
+      "description": "Tarjetas NFC/QR orientadas a facilitar reseñas en Google.",
+      "notes": "Propuesta pendiente de verificación; no presentar como oferta disponible."
+    }
+  ]
+}

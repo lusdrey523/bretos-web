@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "updated": "2026-10-21",
+  "status": "draft",
+  "name": "Bretos Services",
+  "legal_entity": false,
+  "stage": "piloto",
+  "tagline": "Porque Tu Negocio, Puede Estar Mejor Conectado!!!",
+  "description": "Proyecto en etapa piloto. No existe entidad legal constituida.",
+  "mission": null,
+  "vision": null,
+  "principles": [],
+  "contact": {
+    "whatsapp": null,
+    "notes": "Número oficial pendiente de confirmación formal para codificación. No inventar."
+  },
+  "notes": "Textos de misión, visión y principios son borradores hasta aprobación explícita de Luis."
+}

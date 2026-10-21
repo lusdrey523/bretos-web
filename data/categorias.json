@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "updated": "2026-10-21",
+  "categories": [
+    {
+      "id": "nfc-qr",
+      "name": "Tarjetas NFC/QR",
+      "description": "Productos físicos con tecnología NFC y códigos QR."
+    },
+    {
+      "id": "servicios",
+      "name": "Servicios",
+      "description": "Servicios de diseño, desarrollo y consultoría."
+    },
+    {
+      "id": "ia",
+      "name": "Asistentes de IA",
+      "description": "Soluciones basadas en inteligencia artificial."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "bretos-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Web oficial de Bretos Services — fuente central de datos (G1)",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "test": "node tests/validate.test.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
