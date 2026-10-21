@@ -70,7 +70,8 @@ jobs:
           const widths = [1440, 768, 390];
           const pages = [
             { name: 'inicio', url: 'http://127.0.0.1:4321/' },
-            { name: 'catalogo', url: 'http://127.0.0.1:4321/catalogo' }
+            { name: 'catalogo', url: 'http://127.0.0.1:4321/catalogo' },
+            { name: 'contacto', url: 'http://127.0.0.1:4321/contacto', widths: [390] }
           ];
 
           (async () => {
@@ -79,7 +80,8 @@ jobs:
             fs.mkdirSync(outDir, { recursive: true });
 
             for (const pageInfo of pages) {
-              for (const width of widths) {
+              const pageWidths = pageInfo.widths || widths;
+              for (const width of pageWidths) {
                 const context = await browser.newContext({
                   viewport: { width, height: 900 },
                   deviceScaleFactor: 1
@@ -124,6 +126,6 @@ jobs:
           echo "- **SHA:** \`${{ github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- **Branch:** \`${{ github.ref_name }}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- **Build:** OK (si este job terminó en verde)" >> "$GITHUB_STEP_SUMMARY"
-          echo "- **Capturas:** Inicio y Catálogo a 1440 / 768 / 390 px" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Capturas:** Inicio y Catálogo 1440/768/390; Contacto 390" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           ls -la screenshots/ >> "$GITHUB_STEP_SUMMARY" || true
