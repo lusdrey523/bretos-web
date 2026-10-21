@@ -33,7 +33,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
@@ -51,7 +50,6 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
 
-          # Esperar a que el servidor responda
           for i in $(seq 1 30); do
             if curl -sf http://127.0.0.1:4321/ >/dev/null; then
               echo "Server ready"
@@ -86,7 +84,6 @@ jobs:
                 });
                 const page = await context.newPage();
                 await page.goto(pageInfo.url, { waitUntil: 'networkidle', timeout: 30000 });
-                // Intentar abrir menú móvil solo en 390
                 if (width === 390) {
                   const toggle = page.locator('#menu-toggle');
                   if (await toggle.count()) {
