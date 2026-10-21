@@ -20,6 +20,8 @@ const nav = [
   { href: '/contenidos', label: 'Contenidos' },
   { href: '/contacto', label: 'Contacto' }
 ];
+
+const siteName = "Breto's Services";
 ---
 
 <!doctype html>
@@ -28,6 +30,16 @@ const nav = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#18C7C8" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,11 +49,12 @@ const nav = [
     />
   </head>
   <body>
+    <a class="sr-only" href="#contenido-principal">Saltar al contenido</a>
     <header class="site-header">
       <div class="container header-inner">
-        <a href="/" class="logo-link" aria-label="Bretos Services — inicio">
+        <a href="/" class="logo-link" aria-label={`${siteName} — inicio`}>
           <span class="logo-placeholder" aria-hidden="true">B</span>
-          <span>Breto's Services</span>
+          <span>{siteName}</span>
         </a>
 
         <nav class="nav-desktop" aria-label="Principal">
@@ -91,7 +104,7 @@ const nav = [
           Bretos Services · Etapa piloto · Sin entidad legal constituida
         </p>
         <p>
-          Preview G2 — no es sitio de producción
+          Preview G3 — no es sitio de producción
         </p>
       </div>
     </footer>

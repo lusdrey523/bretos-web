@@ -1,40 +1,177 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import categorias from '../../data/categorias.json';
+
+// G3: no hay publicaciones aprobadas en data/contenidos.
+// La UI de búsqueda/filtro se renderiza lista para cuando existan ítems.
+const posts: {
+  id: string;
+  title: string;
+  summary?: string;
+  category: string;
+  body?: string;
+}[] = [];
+
+const categories = categorias.categories ?? [];
+const isEmpty = posts.length === 0;
 ---
 
 <Layout
   title="Centro de contenidos — Bretos Services"
-  description="Publicaciones y recursos educativos de Bretos Services."
+  description="Publicaciones y recursos educativos de Bretos Services. Etapa piloto."
   currentPath="/contenidos"
 >
   <section class="section">
     <div class="container">
       <div class="draft-banner" role="status">
-        BORRADOR — estructura lista; no hay publicaciones aprobadas cargadas.
+        BORRADOR — estructura y filtros listos; no hay publicaciones aprobadas cargadas.
       </div>
 
       <h1>Centro de contenidos</h1>
-      <p style="max-width:40rem;margin-bottom:2rem">
+      <p style="max-width:40rem;margin-bottom:1.5rem">
         Espacio para artículos, guías y recursos educativos.
-        Categorías, filtros y búsqueda se habilitarán cuando existan publicaciones autorizadas.
+        La búsqueda y los filtros por categoría operan sobre el contenido autorizado;
+        hoy el repositorio no incluye publicaciones aprobadas.
       </p>
 
-      <div class="empty-state card">
-        <strong>Sin publicaciones todavía</strong>
-        <p>
-          La carpeta <code>data/contenidos/</code> no contiene Markdown aprobados.
-          No se inventan artículos ni se rellenan con contenido de demostración.
-        </p>
+      <div class="contenidos-toolbar" id="contenidos-toolbar" hidden={isEmpty}>
+        <label class="sr-only" for="contenido-q">Buscar</label>
+        <input
+          type="search"
+          id="contenido-q"
+          name="q"
+          placeholder="Buscar en títulos y textos…"
+          autocomplete="off"
+          disabled={isEmpty}
+        />
+        <label class="sr-only" for="contenido-cat">Categoría</label>
+        <select id="contenido-cat" name="category" disabled={isEmpty}>
+          <option value="all">Todas las categorías</option>
+          {categories.map((c) => (
+            <option value={c.id}>{c.name}</option>
+          ))}
+        </select>
       </div>
 
-      <div style="margin-top:2rem;display:grid;gap:1rem;grid-template-columns:1fr;max-width:28rem">
-        <div class="placeholder-box">
-          Filtros por categoría — pendiente de contenido
+      {isEmpty ? (
+        <div class="empty-state card" id="contenidos-empty">
+          <strong>Sin publicaciones todavía</strong>
+          <p>
+            La carpeta <code>data/contenidos/</code> no contiene Markdown ni JSON aprobados.
+            No se inventan artículos. Cuando existan, la búsqueda y el filtro por categoría
+            (nfc-qr, servicios, ia) quedarán activos automáticamente.
+          </p>
         </div>
-        <div class="placeholder-box">
-          Buscador — pendiente de contenido
-        </div>
+      ) : (
+        <div id="contenidos-list" class="product-grid" data-posts={JSON.stringify(posts)}></div>
+      )}
+
+      <div
+        id="contenidos-no-results"
+        class="empty-state"
+        hidden
+        style="margin-top:1.5rem"
+      >
+        <strong>Sin resultados</strong>
+        <p>Prueba otra búsqueda o categoría.</p>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .contenidos-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .contenidos-toolbar input[type='search'],
+  .contenidos-toolbar select {
+    font: inherit;
+    padding: 0.65rem 0.9rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: 10px;
+    min-width: 12rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+  .contenidos-toolbar input[type='search']:focus-visible,
+  .contenidos-toolbar select:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .contenidos-toolbar input[type='search'] {
+    flex: 1 1 14rem;
+  }
+</style>
+
+<script>
+  function normalizeText(s) {
+    if (s == null) return '';
+    return String(s)
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  }
+
+  function filterContenidos(items, opts) {
+    let list = Array.isArray(items) ? items.slice() : [];
+    const cat = opts.category;
+    if (cat && cat !== 'all') {
+      list = list.filter((i) => i && i.category === cat);
+    }
+    const q = normalizeText(opts.query);
+    if (q) {
+      list = list.filter((i) => {
+        if (!i) return false;
+        const hay = normalizeText([i.title, i.summary, i.body].filter(Boolean).join(' '));
+        return hay.includes(q);
+      });
+    }
+    return list;
+  }
+
+  const listEl = document.getElementById('contenidos-list');
+  if (listEl) {
+    const raw = listEl.getAttribute('data-posts') || '[]';
+    let posts = [];
+    try {
+      posts = JSON.parse(raw);
+    } catch {
+      posts = [];
+    }
+    const qInput = document.getElementById('contenido-q');
+    const catSelect = document.getElementById('contenido-cat');
+    const noResults = document.getElementById('contenidos-no-results');
+
+    function render() {
+      const filtered = filterContenidos(posts, {
+        query: qInput?.value,
+        category: catSelect?.value
+      });
+      listEl.innerHTML = filtered
+        .map(
+          (p) =>
+            `<article class="card product-card"><h3>${escapeHtml(p.title)}</h3>` +
+            (p.summary ? `<p class="desc">${escapeHtml(p.summary)}</p>` : '') +
+            `</article>`
+        )
+        .join('');
+      if (noResults) noResults.hidden = filtered.length > 0;
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    qInput?.addEventListener('input', render);
+    catSelect?.addEventListener('change', render);
+    render();
+  }
+</script>
