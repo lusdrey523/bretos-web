@@ -14,13 +14,12 @@ import {
   mkdirSync,
   rmSync,
   copyFileSync,
-  existsSync,
-  createHash
+  existsSync
 } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import { createHash as cryptoHash } from 'node:crypto';
+import { createHash } from 'node:crypto';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -46,7 +45,7 @@ function assert(condition, message) {
 function fileHash(path) {
   if (!existsSync(path)) return null;
   const content = readFileSync(path);
-  return cryptoHash('sha256').update(content).digest('hex');
+  return createHash('sha256').update(content).digest('hex');
 }
 
 function runValidateOn(cwd) {
