@@ -53,8 +53,15 @@ const siteName = "Breto's Services";
     <header class="site-header">
       <div class="container header-inner">
         <a href="/" class="logo-link" aria-label={`${siteName} — inicio`}>
-          <span class="logo-placeholder" aria-hidden="true">B</span>
-          <span>{siteName}</span>
+          <img
+            class="brand-logo"
+            src="/brand/prototype-derived-logo.png"
+            alt=""
+            width="132"
+            height="60"
+            decoding="async"
+          />
+          <span class="sr-only">{siteName}</span>
         </a>
 
         <nav class="nav-desktop" aria-label="Principal">
