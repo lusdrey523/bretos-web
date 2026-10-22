@@ -11,6 +11,7 @@
   --color-muted: #6b7280;
   --color-accent: #18c7c8;
   --color-accent-soft: #e6f9f9;
+  --color-brand-dark: #0a0a0a;
   --color-border: #e5e7eb;
   --color-pilot: #0f766e;
   --color-planned: #1d4ed8;
@@ -218,7 +219,7 @@ p {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border);
 }
@@ -242,18 +243,11 @@ p {
   font-size: 1.15rem;
 }
 
-.logo-placeholder {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: var(--color-accent-soft);
-  border: 1.5px dashed var(--color-accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  color: var(--color-accent);
-  font-weight: 700;
+.brand-logo {
+  width: clamp(112px, 13vw, 154px);
+  height: auto;
+  max-height: 48px;
+  object-fit: contain;
 }
 
 .nav-desktop {
@@ -318,6 +312,10 @@ p {
   .nav-desktop {
     display: flex;
   }
+
+  .brand-logo {
+    width: 154px;
+  }
   .menu-toggle {
     display: none;
   }
@@ -326,15 +324,32 @@ p {
   }
 }
 
-/* Hero */
+/* Hero — G4 visual adaptation based on the user's pilot prototype. */
 .hero {
   padding: 3.5rem 0 3rem;
   text-align: center;
+  background: var(--color-brand-dark);
+  border-bottom: 5px solid var(--color-accent);
+}
+
+.hero h1 {
+  color: #ffffff;
+  max-width: 54rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero .tagline {
+  color: #d1d5db;
+}
+
+.hero .draft-banner {
+  text-align: left;
 }
 
 .hero .tagline {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: var(--color-muted);
+  color: #d1d5db;
   max-width: 36rem;
   margin: 0 auto 1.75rem;
 }
