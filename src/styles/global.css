@@ -347,6 +347,15 @@ p {
   text-align: left;
 }
 
+.hero .btn--ghost {
+  color: #ffffff;
+  border-color: #6b7280;
+}
+
+.hero .btn--ghost:hover {
+  color: var(--color-accent);
+}
+
 .hero .tagline {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: #d1d5db;
