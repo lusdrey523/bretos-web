@@ -9,7 +9,7 @@ Estado de coordinación del proyecto al 22 de octubre de 2026. Este README docum
 | G0 — línea base | Parcial. La revisión del repositorio está verificada; la inspección actual de Pages, DNS, rutas y bindings de Cloudflare sigue pendiente. | Coordinación externa; evidencia Cloudflare pendiente |
 | G1 — datos y validación | Aprobada y cerrada como hito técnico. | `g1-data-source` — `ae69d3faa367e2e52591d05c53f53bcf25329402` |
 | G2 — diseño | Aprobada y cerrada como preview estática no productiva. | `g2-design-preview` — `05498d3cdd75d295c01834bf74fadbf5e0d80f27` |
-| G3 — funcionalidad | Aprobada y cerrada como preview funcional no productiva. | Hito de código aprobado: `e82e012569af75d34b2319471a8377eb3ee907fe`; HEAD actual de la rama (commit documental posterior): `59ba9ed32c07bb6d3c8f9bde8d65ae4ec5f300f0` |
+| G3 — funcionalidad | Aprobada y cerrada como preview funcional no productiva. | SHA del hito de código aprobado: `e82e012569af75d34b2319471a8377eb3ee907fe`. README documentado después en commits separados, sin cambios al código de G3. |
 | G4 — planificación Pages | Pendiente de línea base Cloudflare completa y de un plan específico. | Sin rama ni entregable aprobado |
 | G5 — publicación | Pendiente de autorización explícita para el artefacto, SHA, proyecto y entorno concretos. | No autorizada ni ejecutada |
 
