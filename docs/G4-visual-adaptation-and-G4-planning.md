@@ -1,6 +1,6 @@
 # G4 — visual adaptation and deployment planning (planning only)
 
-**Status:** preview branch / not production. Brand spelling, logo master status, and site copy remain unapproved. This document is not authorization to create or configure Cloudflare Pages.
+**Status:** preview branch / not production. Brand spelling, logo master status, and site copy remain unapproved. This document records the authorized, isolated preview route; it does not authorize production launch or changes outside that route.
 
 ## Visual comparison and adaptation
 
@@ -19,15 +19,15 @@
 ### Target architecture
 
 - Static Astro output; repository root `/`, build command `npm run build`, output directory `dist`; Astro configuration already sets `output: 'static'` and does not require an adapter.
-- If/when G5 is separately authorized, create a separate Pages project named `bretos-web`; do not reuse or alter `panel-bretos-services`.
+- Create a separate Pages project named `bretos-web-preview`; do not reuse or alter `panel-bretos-services`. This project is preview-only and has no Git integration.
 - No Worker, KV, Functions, runtime secrets, API token, or customer-data backend is required for this static preview. Keep `noindex` while preview/draft content remains.
 - Start with the generated `*.pages.dev` hostname only. A custom domain decision, DNS change, and public production launch are not part of G4.
 
-### Git/deployment route — decision still required
+### Deployment route — Direct Upload, isolated preview only
 
-**Recommendation for future approval:** keep `main` protected and production build disabled until the production content/release checklist is approved; test Git integration first on a separate preview branch, with Preview deployments limited or protected. Only after a separately approved production-ready commit and controlled branch promotion should a production branch be configured. Do not connect Git while `main` contains only its initial README unless production builds are explicitly disabled/otherwise safely gated: Cloudflare Pages Git integration can build and deploy on pushes, so a connection can create deployments automatically.
+Use Direct Upload of the reviewed static `dist/` from the exact successful CI artifact for branch `g4-visual-preview`. Create only the separate Pages project `bretos-web-preview`, with no Git repository connection, no custom domain, and no production release. The uploaded deployment must be explicitly marked as a preview deployment under a non-production branch name (for example `g4-visual-preview`); verify the API response reports preview, not production, before proceeding. If the API does not guarantee that distinction, stop before upload.
 
-Alternative: Direct Upload avoids an automatic Git-triggered build but requires a deliberate manual artifact build/upload/release process and reduces traceability; it is not the recommended route for ongoing development. No option has been configured or activated.
+This choice avoids automatic builds or deployments from `main` or pushes. Preserve `main` and the G1/G2/G3/G4 branches; do not merge or open a PR. The preview hostname may be publicly reachable by anyone who knows the URL; `noindex` is not access control. Do not add Access or other unapproved dependencies. No secrets, Functions, Worker, KV, customer-data backend, custom domain, DNS, or production traffic are involved. Rollback/recovery is limited to selecting a known-good deployment in this new preview project; do not delete resources as rollback without separate approval.
 
 ### Acceptance gates before any production launch
 
@@ -40,7 +40,7 @@ Alternative: Direct Upload avoids an automatic Git-triggered build but requires 
 
 ### Rollback / reversibility (proposal)
 
-For an eventual Pages project, retain the previous known-good deployment and use Pages deployment rollback to that immutable deployment; for Git-managed sources, revert the relevant commit through the normal reviewed branch process. If custom hostname/DNS is added later, document prior DNS values and separately approve its reversal. This plan itself changes no deployment, DNS, project or account configuration.
+For `bretos-web-preview`, retain the deployment ID and immutable artifact/commit record. If the preview is defective, stop sharing it and use the project’s deployment rollback to a known-good deployment; do not delete the project or modify DNS. No Git-managed deployment or custom hostname is configured by this plan.
 
 ## Official Cloudflare documentation reviewed
 
