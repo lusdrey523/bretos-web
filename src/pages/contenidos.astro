@@ -1,177 +1,23 @@
----
 import Layout from '../layouts/Layout.astro';
-import categorias from '../../data/categorias.json';
-
-// G3: no hay publicaciones aprobadas en data/contenidos.
-// La UI de búsqueda/filtro se renderiza lista para cuando existan ítems.
-const posts: {
-  id: string;
-  title: string;
-  summary?: string;
-  category: string;
-  body?: string;
-}[] = [];
-
-const categories = categorias.categories ?? [];
-const isEmpty = posts.length === 0;
 ---
-
-<Layout
-  title="Centro de contenidos — Bretos Services"
-  description="Publicaciones y recursos educativos de Bretos Services. Etapa piloto."
-  currentPath="/contenidos"
->
-  <section class="section">
-    <div class="container">
-      <div class="draft-banner" role="status">
-        BORRADOR — estructura y filtros listos; no hay publicaciones aprobadas cargadas.
-      </div>
-
-      <h1>Centro de contenidos</h1>
-      <p style="max-width:40rem;margin-bottom:1.5rem">
-        Espacio para artículos, guías y recursos educativos.
-        La búsqueda y los filtros por categoría operan sobre el contenido autorizado;
-        hoy el repositorio no incluye publicaciones aprobadas.
-      </p>
-
-      <div class="contenidos-toolbar" id="contenidos-toolbar" hidden={isEmpty}>
-        <label class="sr-only" for="contenido-q">Buscar</label>
-        <input
-          type="search"
-          id="contenido-q"
-          name="q"
-          placeholder="Buscar en títulos y textos…"
-          autocomplete="off"
-          disabled={isEmpty}
-        />
-        <label class="sr-only" for="contenido-cat">Categoría</label>
-        <select id="contenido-cat" name="category" disabled={isEmpty}>
-          <option value="all">Todas las categorías</option>
-          {categories.map((c) => (
-            <option value={c.id}>{c.name}</option>
-          ))}
-        </select>
-      </div>
-
-      {isEmpty ? (
-        <div class="empty-state card" id="contenidos-empty">
-          <strong>Sin publicaciones todavía</strong>
-          <p>
-            La carpeta <code>data/contenidos/</code> no contiene Markdown ni JSON aprobados.
-            No se inventan artículos. Cuando existan, la búsqueda y el filtro por categoría
-            (nfc-qr, servicios, ia) quedarán activos automáticamente.
-          </p>
-        </div>
-      ) : (
-        <div id="contenidos-list" class="product-grid" data-posts={JSON.stringify(posts)}></div>
-      )}
-
-      <div
-        id="contenidos-no-results"
-        class="empty-state"
-        hidden
-        style="margin-top:1.5rem"
-      >
-        <strong>Sin resultados</strong>
-        <p>Prueba otra búsqueda o categoría.</p>
-      </div>
-    </div>
-  </section>
+<Layout title="Centro de contenidos — Breto's Services" description="Ruta editorial prevista para noticias, guías y cursos TIC educativos. Publicaciones y distribución aún no activas." currentPath="/contenidos">
+<section class="section"><div class="container content-wrap">
+  <span class="eyebrow">Aprendizaje abierto · En preparación</span>
+  <h1>Centro de contenidos</h1>
+  <p class="lead">Un espacio previsto para noticias seleccionadas, guías prácticas y cursos TIC educativos, presentado con contexto, fuentes y un estado editorial claro.</p>
+  <div class="editorial-status"><strong>Estado actual</strong><p>La estructura del centro está preparada; todavía no hay publicaciones aprobadas ni cursos disponibles. Tampoco hay canales de distribución activos. No queremos llenar el espacio con material sin revisar.</p></div>
+  <h2>Qué queremos ofrecer</h2>
+  <div class="content-grid">
+    <article class="card"><span class="kind">Noticias</span><h3>Actualidad con contexto</h3><p>Selección de novedades relevantes de tecnología y herramientas digitales, con fecha, fuente identificable y explicación de por qué importa.</p><span class="planned">Formato previsto · aún no publicado</span></article>
+    <article class="card"><span class="kind">Guías</span><h3>Pasos útiles para aplicar</h3><p>Recursos prácticos sobre presencia digital, NFC/QR y herramientas para negocios, distinguiendo información comprobada de recomendaciones.</p><span class="planned">Formato previsto · aún no publicado</span></article>
+    <article class="card"><span class="kind">Cursos TIC</span><h3>Aprender con una ruta clara</h3><p>Contenidos educativos de tecnologías de información y comunicación, con objetivos y materiales definidos antes de anunciar cualquier curso.</p><span class="planned">Oferta educativa en planificación</span></article>
+  </div>
+  <h2>Estándar editorial previsto</h2>
+  <ul class="editorial-rules"><li>Fecha de publicación y actualización visibles.</li><li>Autoría o entidad responsable identificada.</li><li>Fuentes enlazadas y separadas de opiniones o recomendaciones.</li><li>Correcciones y alcance de cada recurso transparentes.</li><li>Distinción entre noticias, orientación educativa y oferta comercial.</li></ul>
+  <aside class="distribution-note"><strong>Distribución:</strong> se definirán y probarán los canales antes de anunciarlos. WhatsApp, correo u otras plataformas no se consideran activos por el solo hecho de estar previstos.</aside>
+  <a class="back-link" href="/ruta">← Ver la hoja de ruta y los avances</a>
+</div></section>
 </Layout>
-
 <style>
-  .contenidos-toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-  }
-  .contenidos-toolbar input[type='search'],
-  .contenidos-toolbar select {
-    font: inherit;
-    padding: 0.65rem 0.9rem;
-    border: 1.5px solid var(--color-border);
-    border-radius: 10px;
-    min-width: 12rem;
-    background: var(--color-bg);
-    color: var(--color-text);
-  }
-  .contenidos-toolbar input[type='search']:focus-visible,
-  .contenidos-toolbar select:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-  }
-  .contenidos-toolbar input[type='search'] {
-    flex: 1 1 14rem;
-  }
+.content-wrap{max-width:980px}.eyebrow{display:inline-block;color:#087f82;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem}.lead{font-size:1.15rem;max-width:52rem}.editorial-status{padding:1.2rem 1.4rem;margin:1.5rem 0 2.2rem;border:1px solid #f0d8a8;border-left:4px solid #c78716;background:#fffaf0;border-radius:10px}.editorial-status strong{display:block;margin-bottom:.35rem}.editorial-status p{margin:0}.content-wrap h2{margin-top:2rem}.content-grid{display:grid;grid-template-columns:1fr;gap:1rem}.content-grid h3{margin:.55rem 0}.content-grid p{font-size:.95rem}.kind{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#087f82;font-weight:700}.planned{font-size:.81rem;font-weight:650;color:#59636c}.editorial-rules{padding-left:1.3rem;color:#374151}.editorial-rules li{margin:.55rem 0}.distribution-note{padding:1rem 1.2rem;background:#f3f5f7;border-radius:10px;color:#374151;margin:1.5rem 0}.back-link{font-weight:700;color:#087f82}@media(min-width:760px){.content-grid{grid-template-columns:repeat(3,1fr)}}
 </style>
-
-<script>
-  function normalizeText(s) {
-    if (s == null) return '';
-    return String(s)
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .trim();
-  }
-
-  function filterContenidos(items, opts) {
-    let list = Array.isArray(items) ? items.slice() : [];
-    const cat = opts.category;
-    if (cat && cat !== 'all') {
-      list = list.filter((i) => i && i.category === cat);
-    }
-    const q = normalizeText(opts.query);
-    if (q) {
-      list = list.filter((i) => {
-        if (!i) return false;
-        const hay = normalizeText([i.title, i.summary, i.body].filter(Boolean).join(' '));
-        return hay.includes(q);
-      });
-    }
-    return list;
-  }
-
-  const listEl = document.getElementById('contenidos-list');
-  if (listEl) {
-    const raw = listEl.getAttribute('data-posts') || '[]';
-    let posts = [];
-    try {
-      posts = JSON.parse(raw);
-    } catch {
-      posts = [];
-    }
-    const qInput = document.getElementById('contenido-q');
-    const catSelect = document.getElementById('contenido-cat');
-    const noResults = document.getElementById('contenidos-no-results');
-
-    function render() {
-      const filtered = filterContenidos(posts, {
-        query: qInput?.value,
-        category: catSelect?.value
-      });
-      listEl.innerHTML = filtered
-        .map(
-          (p) =>
-            `<article class="card product-card"><h3>${escapeHtml(p.title)}</h3>` +
-            (p.summary ? `<p class="desc">${escapeHtml(p.summary)}</p>` : '') +
-            `</article>`
-        )
-        .join('');
-      if (noResults) noResults.hidden = filtered.length > 0;
-    }
-
-    function escapeHtml(s) {
-      return String(s)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    }
-
-    qInput?.addEventListener('input', render);
-    catSelect?.addEventListener('change', render);
-    render();
-  }
-</script>

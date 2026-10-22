@@ -1,64 +1,47 @@
----
 import Layout from '../layouts/Layout.astro';
 import ProductCard from '../components/ProductCard.astro';
 import catalogo from '../../data/catalogo.json';
-
 const items = catalogo.items ?? [];
 const featured = items.slice(0, 3);
 ---
-
-<Layout title="Bretos Services — Inicio" currentPath="/">
+<Layout title="Breto's Services — Conexión digital responsable" description="Proyecto piloto chileno que explora soluciones digitales prácticas para negocios independientes. Estado y alcance presentados con transparencia." currentPath="/">
   <section class="hero">
     <div class="container">
-      <div class="draft-banner" role="status">
-        BORRADOR — textos y marca pendientes de aprobación formal de Luis
-      </div>
-      <h1>Conecta tu negocio de forma más simple</h1>
-      <p class="tagline">
-        «Porque Tu Negocio, Puede Estar Mejor Conectado!!!»
-      </p>
-      <p class="tagline" style="margin-top:-0.75rem;font-size:0.95rem">
-        Soluciones NFC/QR y digitales en etapa piloto. Mercado: Chile.
-      </p>
+      <span class="eyebrow">Proyecto piloto · Chile</span>
+      <h1>Conexiones digitales más claras para negocios independientes</h1>
+      <p class="tagline">Exploramos soluciones simples que acercan a cada negocio con sus clientes, con información clara sobre lo que está definido y lo que aún estamos validando.</p>
       <div class="hero-actions">
-        <a class="btn btn--primary" href="/catalogo">Ver catálogo</a>
-        <a class="btn btn--ghost" href="/contenidos">Centro de contenidos</a>
+        <a class="btn btn--primary" href="/ruta">Conoce la ruta del proyecto</a>
+        <a class="btn btn--ghost" href="/catalogo">Ver líneas en piloto</a>
       </div>
+      <p class="hero-note">En etapa piloto: las líneas mostradas no representan disponibilidad, precios ni resultados garantizados.</p>
+    </div>
+  </section>
+
+  <section class="section trust-strip" aria-label="Principios del proyecto">
+    <div class="container trust-grid">
+      <div><strong>Transparencia</strong><span>Estados reales, sin promesas infladas.</span></div>
+      <div><strong>Uso responsable</strong><span>Sin reseñas fabricadas ni apropiación de cuentas.</span></div>
+      <div><strong>Validación gradual</strong><span>Primero aprender; luego decidir qué escalar.</span></div>
     </div>
   </section>
 
   <section class="section section--soft">
     <div class="container">
-      <h2>Algunas de nuestras ofertas</h2>
-      <p style="margin-bottom:1.5rem">
-        Estados según la fuente central de datos (G1). No se muestran como disponibles si no lo están.
-      </p>
-      <div class="product-grid">
-        {featured.map((item) => (
-          <ProductCard
-            id={item.id}
-            name={item.name}
-            status={item.status}
-            description={item.description}
-            category={item.category}
-          />
-        ))}
-      </div>
-      <p style="margin-top:1.5rem;text-align:center">
-        <a href="/catalogo">Ver catálogo completo →</a>
-      </p>
+      <div class="section-heading"><div><span class="eyebrow eyebrow--dark">Soluciones en exploración</span><h2>Dos líneas, una misma prioridad: utilidad verificable</h2></div><a href="/catalogo">Ver el catálogo →</a></div>
+      <p class="section-lead">La primera etapa se concentra en herramientas NFC/QR y destinos digitales para negocios independientes. Cada opción se mantiene en su estado real de validación.</p>
+      <div class="product-grid">{featured.map((item) => <ProductCard id={item.id} name={item.name} status={item.status} description={item.description} category={item.category} />)}</div>
     </div>
   </section>
 
   <section class="section">
-    <div class="container" style="max-width:40rem;text-align:center">
-      <h2>Etapa piloto</h2>
-      <p>
-        Bretos Services se encuentra en etapa piloto. No existe entidad legal constituida.
-        Esta web es una vista previa de diseño y contenido; no representa un sitio de producción
-        ni una oferta comercial cerrada.
-      </p>
-      <a class="btn btn--ghost" href="/nosotros">Conocer el estado de la iniciativa</a>
+    <div class="container roadmap-teaser">
+      <div><span class="eyebrow eyebrow--dark">Qué sigue</span><h2>Construir confianza también significa mostrar el proceso</h2><p>La ruta separa lo ya definido, los avances registrados y las capacidades que todavía faltan: contenidos educativos, publicación editorial y canales de distribución.</p></div>
+      <a class="btn btn--primary" href="/ruta">Ver avances y próximos pasos</a>
     </div>
   </section>
+  <section class="section section--soft"><div class="container editorial-teaser"><div><span class="eyebrow eyebrow--dark">Aprendizaje abierto</span><h2>Contenidos útiles, con fuentes y contexto</h2><p>El Centro de contenidos se prepara para reunir noticias seleccionadas, guías y cursos TIC educativos. Aún no hay publicaciones aprobadas ni canales de distribución activos.</p></div><a href="/contenidos">Conocer el centro de contenidos →</a></div></section>
 </Layout>
+<style>
+.eyebrow{display:inline-block;color:#8de9e6;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.8rem}.eyebrow--dark{color:#087f82}.hero{text-align:left}.hero h1{max-width:52rem;margin:0 0 1rem}.hero .tagline{margin:0 0 1.7rem;max-width:44rem}.hero-actions{justify-content:flex-start}.hero-note{margin:1.3rem 0 0;color:#cbd5d7;font-size:.85rem}.trust-strip{padding:1.25rem 0;border-bottom:1px solid var(--color-border)}.trust-grid{display:grid;gap:1rem;grid-template-columns:1fr}.trust-grid div{display:grid;gap:.1rem}.trust-grid strong{font-size:.96rem}.trust-grid span{color:var(--color-muted);font-size:.88rem}.section-heading,.editorial-teaser{display:flex;align-items:end;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}.section-heading h2,.editorial-teaser h2{max-width:45rem;margin-bottom:.3rem}.section-lead{max-width:48rem;margin:1rem 0 1.6rem}.roadmap-teaser{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}.roadmap-teaser>div{max-width:46rem}.roadmap-teaser p,.editorial-teaser p{max-width:44rem;margin-bottom:0}.editorial-teaser a,.section-heading>a{font-weight:700;color:#087f82}@media(min-width:760px){.trust-grid{grid-template-columns:repeat(3,1fr);gap:2rem}.hero{padding-top:4.5rem;padding-bottom:4rem}}
+</style>
