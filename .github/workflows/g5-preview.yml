@@ -1,0 +1,145 @@
+name: G5 Trust Roadmap Preview Verify
+
+on:
+  push:
+    branches:
+      - g5-trust-roadmap-preview
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: g3-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test-capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Report SHA under test
+        run: |
+          echo "Event SHA: ${{ github.sha }}"
+          echo "Ref: ${{ github.ref }}"
+          git rev-parse HEAD
+          git log -1 --oneline
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Validate G1 data
+        run: npm run validate
+
+      - name: Run tests (G1 + G3)
+        run: npm test
+
+      - name: Build (Astro static)
+        run: npm run build
+
+      - name: Validate rendered G5 pages
+        run: |
+          node <<'SCRIPT'
+          const fs = require('fs');
+          for (const file of ['dist/index.html','dist/ruta/index.html','dist/contenidos/index.html']) {
+            const html = fs.readFileSync(file, 'utf8');
+            if (!/^<!doctype html>/i.test(html) || !/<head[\s>]/i.test(html)) throw new Error(`${file}: missing rendered HTML head`);
+            if (/import\s+Layout|<Layout\b/.test(html)) throw new Error(`${file}: leaked Astro source`);
+            if (!/<link[^>]+rel=["']stylesheet["'][^>]+href=/i.test(html)) throw new Error(`${file}: missing stylesheet reference`);
+          }
+          SCRIPT
+
+      - name: Install Playwright (package + Chromium)
+        run: |
+          npm install --no-save --no-audit --no-fund playwright
+          npx playwright install --with-deps chromium
+
+      - name: Serve dist and capture screenshots
+        run: |
+          set -euo pipefail
+          npx --yes serve dist -l 4321 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
+
+          for i in $(seq 1 30); do
+            if curl -sf http://127.0.0.1:4321/ >/dev/null; then
+              echo "Server ready"
+              break
+            fi
+            sleep 1
+          done
+
+          mkdir -p screenshots
+
+          node <<'SCRIPT'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+
+          const pages = [
+            { name: 'inicio', url: 'http://127.0.0.1:4321/', widths: [1440, 390] },
+            { name: 'catalogo', url: 'http://127.0.0.1:4321/catalogo', widths: [1440, 390] },
+            { name: 'contenidos', url: 'http://127.0.0.1:4321/contenidos', widths: [1440, 390] },
+            { name: 'contacto', url: 'http://127.0.0.1:4321/contacto', widths: [390] }
+          ];
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const outDir = path.join(process.cwd(), 'screenshots');
+            fs.mkdirSync(outDir, { recursive: true });
+
+            for (const pageInfo of pages) {
+              for (const width of pageInfo.widths) {
+                const context = await browser.newContext({
+                  viewport: { width, height: 900 },
+                  deviceScaleFactor: 1
+                });
+                const page = await context.newPage();
+                await page.goto(pageInfo.url, { waitUntil: 'networkidle', timeout: 30000 });
+                if (width === 390) {
+                  const toggle = page.locator('#menu-toggle');
+                  if (await toggle.count()) {
+                    await toggle.click();
+                    await page.waitForTimeout(400);
+                  }
+                }
+                const file = path.join(outDir, `${pageInfo.name}-${width}.png`);
+                await page.screenshot({ path: file, fullPage: true });
+                console.log('Captured', file);
+                await context.close();
+              }
+            }
+
+            await browser.close();
+            console.log('All screenshots done');
+          })().catch((err) => {
+            console.error(err);
+            process.exit(1);
+          });
+          SCRIPT
+
+      - name: Upload screenshots and dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: g5-trust-roadmap-preview-${{ github.sha }}
+          path: |
+            screenshots/
+            dist/
+          retention-days: 14
+
+      - name: Summary
+        run: |
+          echo "## G5 Trust Roadmap Preview Verify" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **SHA:** \`${{ github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Branch:** \`${{ github.ref_name }}\`" >> "$GITHUB_STEP_SUMMARY"
+          ls -la screenshots/ >> "$GITHUB_STEP_SUMMARY" || true
