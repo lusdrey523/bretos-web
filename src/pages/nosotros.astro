@@ -9,7 +9,7 @@ import empresa from '../../data/empresa.json';
   currentPath="/nosotros"
 >
   <section class="section">
-    <div class="container" style="max-width:42rem">
+    <div class="container about-layout">
       <div class="draft-banner" role="status">
         Estado del proyecto · Actualizado según la información documentada disponible.
       </div>
@@ -52,3 +52,12 @@ import empresa from '../../data/empresa.json';
     </div>
   </section>
 </Layout>
+<style>
+.about-layout { max-width: 68rem; }
+.about-layout h1 { max-width: 16ch; margin-bottom: 1.4rem; }
+.about-layout > p, .about-layout > ul { max-width: 48rem; }
+.about-layout > p:first-of-type { font-size: 1.2rem; }
+.about-layout h2 { margin-top: 2.7rem !important; padding-top: 1.1rem; border-top: 1px solid #d8e0e0; }
+.about-layout ul { border-left: 3px solid #18c7c8; padding: .8rem 0 .8rem 1.4rem !important; background: #f5f7f7; }
+.about-layout li { padding: .3rem .7rem; }
+</style>

@@ -8,7 +8,7 @@ import Layout from '../layouts/Layout.astro';
   currentPath="/contacto"
 >
   <section class="section">
-    <div class="container" style="max-width:36rem">
+    <div class="container contact-layout">
       <div class="draft-banner" role="status">
         Canal de contacto en definición · Todavía no hay un medio habilitado desde este sitio.
       </div>
@@ -18,7 +18,7 @@ import Layout from '../layouts/Layout.astro';
         Breto's Services está en etapa piloto. Cuando se habilite un canal de contacto, lo indicaremos aquí con claridad.
       </p>
 
-      <div class="card" style="margin-top:1.5rem;text-align:center">
+      <div class="contact-channel">
         <p style="margin-bottom:1rem;color:var(--color-muted)">
           Canal de contacto · Próximamente
         </p>
@@ -30,10 +30,21 @@ import Layout from '../layouts/Layout.astro';
         </p>
       </div>
 
-      <div class="placeholder-box" style="margin-top:1.5rem">
+      <div class="contact-form-note">
         <strong>Formulario de contacto</strong><br />
         Aún no está habilitado. Antes de activarlo se definirán los datos solicitados, su uso y los canales de atención.
       </div>
     </div>
   </section>
 </Layout>
+<style>
+.contact-layout { max-width: 68rem; display: grid; grid-template-columns: minmax(0,1.05fr) minmax(17rem,.8fr); gap: 1.2rem 4rem; align-items: start; }
+.contact-layout > .draft-banner, .contact-layout > h1, .contact-layout > p { grid-column: 1; }
+.contact-layout > .draft-banner { margin: 0; }
+.contact-layout > h1 { margin: .5rem 0 0; }
+.contact-layout > p { max-width: 40rem; }
+.contact-channel { grid-column: 2; grid-row: 2 / span 2; align-self: stretch; padding: 1.5rem; border: 1px solid #d4dddd; border-top: 4px solid #18c7c8; background: #f5f7f7; }
+.contact-channel p:first-child { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; color: #075d60; }
+.contact-form-note { grid-column: 1 / -1; padding: 1rem 0; border-top: 1px solid #d4dddd; color: #344449; }
+@media(max-width:700px){.contact-layout{display:block}.contact-channel{margin:1.5rem 0}.contact-form-note{margin-top:1rem}}
+</style>
