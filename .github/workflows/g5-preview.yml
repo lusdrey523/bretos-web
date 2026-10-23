@@ -59,16 +59,15 @@ jobs:
             if (/import\s+Layout|<Layout\b/.test(html)) throw new Error(`${file}: leaked Astro source`);
             if (!/<link[^>]+rel=["']stylesheet["'][^>]+href=/i.test(html)) throw new Error(`${file}: missing stylesheet reference`);
             if (/<script\b(?![^>]*\bsrc=)[^>]*>/i.test(html)) throw new Error(`${file}: inline script blocked by CSP`);
+            if (!/<script[^>]+src=["']\/scripts\/mobile-nav\.js["']/i.test(html)) throw new Error(`${file}: expected external mobile navigation script missing`);
             if (/\son[a-z]+\s*=/i.test(html)) throw new Error(`${file}: inline event handler`);
             for (const [, src] of html.matchAll(/<(?:script|link)[^>]+(?:src|href)=["']([^"']+)["']/gi)) {
               if (src.startsWith('/_astro/')) assets.add(`dist${src}`);
             }
           }
           for (const file of assets) if (!fs.existsSync(file)) throw new Error(`missing referenced asset: ${file}`);
-          const scriptFiles = [...assets].filter((f) => f.endsWith('.js'));
-          if (!scriptFiles.length) throw new Error('mobile navigation JavaScript asset missing from build');
-          const scripts = scriptFiles.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
-          if (!scripts.includes('menu-toggle') || !scripts.includes('nav-mobile') || !scripts.includes('is-open')) throw new Error('bundled mobile navigation behavior not found');
+          const navScript = fs.readFileSync('dist/scripts/mobile-nav.js', 'utf8');
+          if (!navScript.includes('menu-toggle') || !navScript.includes('nav-mobile') || !navScript.includes('is-open')) throw new Error('mobile navigation behavior not found in dist/scripts/mobile-nav.js');
           const headers = fs.readFileSync('dist/_headers', 'utf8');
           for (const required of ['Content-Security-Policy:', 'X-Content-Type-Options: nosniff', 'Referrer-Policy:', 'X-Frame-Options: DENY', 'Permissions-Policy:', '! Access-Control-Allow-Origin']) {
             if (!headers.includes(required)) throw new Error(`dist/_headers: missing ${required}`);
