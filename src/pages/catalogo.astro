@@ -1,47 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProductCard from '../components/ProductCard.astro';
-import catalogo from '../../data/catalogo.json';
-
-const items = catalogo.items ?? [];
 ---
 
 <Layout
-  title="Catálogo — Bretos Services"
-  description="Ofertas y estados comerciales de Bretos Services (fuente central G1)."
-  currentPath="/catalogo"
+  title="Contacto — Bretos Services"
+  description="Contacto comercial de Bretos Services."
+  currentPath="/contacto"
 >
   <section class="section">
-    <div class="container">
+    <div class="container contact-layout">
       <div class="draft-banner" role="status">
-        Líneas en etapa piloto · La presencia en este catálogo no implica disponibilidad inmediata ni precio confirmado.
+        Canal de contacto en definición · Todavía no hay un medio habilitado desde este sitio.
       </div>
-      <h1>Catálogo de servicios</h1>
-      <p style="margin-bottom:2rem;max-width:40rem">
-        Cada ficha indica el estado registrado para esa línea. «En piloto», «planificado» o «en verificación» no equivalen a disponibilidad comercial.
+
+      <h1>Contacto</h1>
+      <p>
+        Breto's Services está en etapa piloto. Cuando se habilite un canal de contacto, lo indicaremos aquí con claridad.
       </p>
 
-      {items.length === 0 ? (
-        <div class="empty-state">
-          <strong>Sin ofertas cargadas</strong>
-          <p>La fuente central no contiene ítems en este momento.</p>
-        </div>
-      ) : (
-        <div class="product-grid catalog-index">
-          {items.map((item) => (
-            <ProductCard
-              id={item.id}
-              name={item.name}
-              status={item.status}
-              description={item.description}
-              category={item.category}
-            />
-          ))}
-        </div>
-      )}
+      <div class="contact-channel">
+        <p class="contact-kicker">
+          Canal de contacto · Próximamente
+        </p>
+        <span class="btn btn--disabled" aria-disabled="true">
+          Canal aún no habilitado
+        </span>
+        <p class="contact-note">
+          No se muestra un enlace hasta que el canal y el número oficial estén confirmados.
+        </p>
+      </div>
+
+      <div class="contact-form-note">
+        <strong>Formulario de contacto</strong><br />
+        Aún no está habilitado. Antes de activarlo se definirán los datos solicitados, su uso y los canales de atención.
+      </div>
     </div>
   </section>
 </Layout>
 <style>
-.catalog-index{display:block;border-top:2px solid #0a0a0a}.catalog-index :global(.product-card){display:grid;grid-template-columns:minmax(10rem,.7fr) minmax(14rem,1.5fr);align-items:start;gap:1.3rem 2rem;padding:1.5rem .2rem;border:0;border-bottom:1px solid var(--color-border);border-radius:0;background:transparent;box-shadow:none}.catalog-index :global(.product-card h3){font-size:1.2rem;margin:0}.catalog-index :global(.product-card .desc){margin:0;color:#39464b}.catalog-index :global(.product-card .meta){grid-column:2;justify-content:flex-start}.catalog-index :global(.badge){letter-spacing:.025em}@media(max-width:600px){.catalog-index :global(.product-card){grid-template-columns:1fr;gap:.55rem}.catalog-index :global(.product-card .meta){grid-column:1}}
+.contact-layout { max-width: 68rem; display: grid; grid-template-columns: minmax(0,1.05fr) minmax(17rem,.8fr); gap: 1.2rem 4rem; align-items: start; }
+.contact-layout > .draft-banner, .contact-layout > h1, .contact-layout > p { grid-column: 1; }
+.contact-layout > .draft-banner { margin: 0; }
+.contact-layout > h1 { margin: .5rem 0 0; }
+.contact-layout > p { max-width: 40rem; }
+.contact-channel { grid-column: 2; grid-row: 2 / span 2; align-self: stretch; padding: 1.5rem; border: 1px solid #d4dddd; border-top: 4px solid #18c7c8; background: #f5f7f7; }
+.contact-kicker { margin-bottom:1rem; color:var(--color-muted); }
+.contact-note { margin-top:1rem; font-size:.85rem; color:var(--color-muted); }
+.contact-channel p:first-child { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; color: #075d60; }
+.contact-form-note { grid-column: 1 / -1; padding: 1rem 0; border-top: 1px solid #d4dddd; color: #344449; }
+@media(max-width:700px){.contact-layout{display:block}.contact-channel{margin:1.5rem 0}.contact-form-note{margin-top:1rem}}
 </style>

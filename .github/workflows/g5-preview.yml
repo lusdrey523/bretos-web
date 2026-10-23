@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: g3-preview-${{ github.ref }}
+  group: g5-preview-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Report SHA under test
         run: |
@@ -30,11 +30,11 @@ jobs:
           git log -1 --oneline
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: "20"
 
-      - name: Install dependencies
+      - name: Install dependencies (no lockfile present)
         run: npm install --no-audit --no-fund
 
       - name: Validate G1 data
@@ -46,20 +46,38 @@ jobs:
       - name: Build (Astro static)
         run: npm run build
 
-      - name: Validate rendered G5 pages
+      - name: Validate all rendered routes and security assets
         run: |
           node <<'SCRIPT'
           const fs = require('fs');
-          for (const file of ['dist/index.html','dist/ruta/index.html','dist/contenidos/index.html']) {
+          const routes = ['index','catalogo','contacto','contenidos','nosotros','ruta'];
+          const assets = new Set();
+          for (const route of routes) {
+            const file = route === 'index' ? 'dist/index.html' : `dist/${route}/index.html`;
             const html = fs.readFileSync(file, 'utf8');
             if (!/^<!doctype html>/i.test(html) || !/<head[\s>]/i.test(html)) throw new Error(`${file}: missing rendered HTML head`);
             if (/import\s+Layout|<Layout\b/.test(html)) throw new Error(`${file}: leaked Astro source`);
             if (!/<link[^>]+rel=["']stylesheet["'][^>]+href=/i.test(html)) throw new Error(`${file}: missing stylesheet reference`);
+            if (/<script\b(?![^>]*\bsrc=)[^>]*>/i.test(html)) throw new Error(`${file}: inline script blocked by CSP`);
+            if (/\son[a-z]+\s*=/i.test(html)) throw new Error(`${file}: inline event handler`);
+            for (const [, src] of html.matchAll(/<(?:script|link)[^>]+(?:src|href)=["']([^"']+)["']/gi)) {
+              if (src.startsWith('/_astro/')) assets.add(`dist${src}`);
+            }
           }
+          for (const file of assets) if (!fs.existsSync(file)) throw new Error(`missing referenced asset: ${file}`);
+          const scriptFiles = [...assets].filter((f) => f.endsWith('.js'));
+          if (!scriptFiles.length) throw new Error('mobile navigation JavaScript asset missing from build');
+          const scripts = scriptFiles.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
+          if (!scripts.includes('menu-toggle') || !scripts.includes('nav-mobile') || !scripts.includes('is-open')) throw new Error('bundled mobile navigation behavior not found');
+          const headers = fs.readFileSync('dist/_headers', 'utf8');
+          for (const required of ['Content-Security-Policy:', 'X-Content-Type-Options: nosniff', 'Referrer-Policy:', 'X-Frame-Options: DENY', 'Permissions-Policy:', '! Access-Control-Allow-Origin']) {
+            if (!headers.includes(required)) throw new Error(`dist/_headers: missing ${required}`);
+          }
+          console.log(`Validated ${routes.length} routes and ${assets.size} referenced build assets.`);
           SCRIPT
 
       - name: Upload compiled dist
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: g5-trust-roadmap-preview-${{ github.sha }}
           path: dist/

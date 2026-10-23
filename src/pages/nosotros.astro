@@ -1,63 +1,47 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import empresa from '../../data/empresa.json';
+import ProductCard from '../components/ProductCard.astro';
+import catalogo from '../../data/catalogo.json';
+
+const items = catalogo.items ?? [];
 ---
 
 <Layout
-  title="Nosotros — Bretos Services"
-  description="Estado de la iniciativa Bretos Services. Etapa piloto."
-  currentPath="/nosotros"
+  title="Catálogo — Bretos Services"
+  description="Ofertas y estados comerciales de Bretos Services (fuente central G1)."
+  currentPath="/catalogo"
 >
   <section class="section">
-    <div class="container about-layout">
+    <div class="container">
       <div class="draft-banner" role="status">
-        Estado del proyecto · Actualizado según la información documentada disponible.
+        Líneas en etapa piloto · La presencia en este catálogo no implica disponibilidad inmediata ni precio confirmado.
       </div>
-
-      <h1>El proyecto y su estado actual</h1>
-
-      <p>
-        <strong>{empresa.name ?? "Bretos Services"}</strong> es un proyecto en
-        <strong> etapa piloto</strong>.
+      <h1>Catálogo de servicios</h1>
+      <p class="catalog-intro">
+        Cada ficha indica el estado registrado para esa línea. «En piloto», «planificado» o «en verificación» no equivalen a disponibilidad comercial.
       </p>
 
-      <p>
-        <strong>No existe entidad legal constituida.</strong>
-        No se presenta como sociedad, empresa formalizada ni operación consolidada.
-      </p>
-
-      {empresa.tagline && (
-        <p style="font-style:italic;color:var(--color-muted)">
-          «{empresa.tagline}»
-        </p>
+      {items.length === 0 ? (
+        <div class="empty-state">
+          <strong>Sin ofertas cargadas</strong>
+          <p>La fuente central no contiene ítems en este momento.</p>
+        </div>
+      ) : (
+        <div class="product-grid catalog-index">
+          {items.map((item) => (
+            <ProductCard
+              id={item.id}
+              name={item.name}
+              status={item.status}
+              description={item.description}
+              category={item.category}
+            />
+          ))}
+        </div>
       )}
-
-      <h2 style="margin-top:2rem">En qué estamos trabajando</h2>
-      <p>
-        Desarrollamos soluciones de conexión digital para negocios en Chile:
-        tarjetas NFC/QR, menús digitales y servicios relacionados,
-        con foco en utilidad práctica, validación gradual y transparencia sobre cada estado.
-      </p>
-
-      <h2>Cómo avanzamos</h2>
-      <p>Priorizamos soluciones sencillas, información verificable y respeto por las cuentas y decisiones de cada negocio. No prometemos reseñas, calificaciones ni resultados que no podemos garantizar.</p>
-      <p><a href="/ruta">Consulta la hoja de ruta, los avances registrados y lo que sigue pendiente →</a></p>
-
-      <h2 style="margin-top:2rem">Transparencia</h2>
-      <ul style="color:var(--color-text-secondary);padding-left:1.25rem">
-        <li>Etapa: piloto</li>
-        <li>Entidad legal: no constituida</li>
-        <li>Este sitio es una vista previa pública; no es una oferta comercial cerrada</li>
-      </ul>
     </div>
   </section>
 </Layout>
 <style>
-.about-layout { max-width: 68rem; }
-.about-layout h1 { max-width: 16ch; margin-bottom: 1.4rem; }
-.about-layout > p, .about-layout > ul { max-width: 48rem; }
-.about-layout > p:first-of-type { font-size: 1.2rem; }
-.about-layout h2 { margin-top: 2.7rem !important; padding-top: 1.1rem; border-top: 1px solid #d8e0e0; }
-.about-layout ul { border-left: 3px solid #18c7c8; padding: .8rem 0 .8rem 1.4rem !important; background: #f5f7f7; }
-.about-layout li { padding: .3rem .7rem; }
+.catalog-intro{margin-bottom:2rem;max-width:40rem}.catalog-index{display:block;border-top:2px solid #0a0a0a}.catalog-index :global(.product-card){display:grid;grid-template-columns:minmax(10rem,.7fr) minmax(14rem,1.5fr);align-items:start;gap:1.3rem 2rem;padding:1.5rem .2rem;border:0;border-bottom:1px solid var(--color-border);border-radius:0;background:transparent;box-shadow:none}.catalog-index :global(.product-card h3){font-size:1.2rem;margin:0}.catalog-index :global(.product-card .desc){margin:0;color:#39464b}.catalog-index :global(.product-card .meta){grid-column:2;justify-content:flex-start}.catalog-index :global(.badge){letter-spacing:.025em}@media(max-width:600px){.catalog-index :global(.product-card){grid-template-columns:1fr;gap:.55rem}.catalog-index :global(.product-card .meta){grid-column:1}}
 </style>
