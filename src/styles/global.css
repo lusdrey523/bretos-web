@@ -442,3 +442,16 @@ p {
   color: var(--color-text-secondary);
   margin-bottom: 0.5rem;
 }
+
+/* G5 visual system: clear editorial rhythm, no implied product mockups. */
+:focus-visible { outline: 3px solid #087f82; outline-offset: 3px; }
+html { scroll-behavior: smooth; }
+.container { max-width: 1200px; padding-inline: clamp(1.1rem, 4vw, 2.5rem); }
+.section { padding-block: clamp(3.2rem, 7vw, 6rem); }
+.site-header { background: rgba(255,255,255,.97); }
+.nav-desktop a:hover,.nav-desktop a[aria-current="page"] { color: #087f82; }
+.nav-mobile a { color: var(--color-text); }
+.site-footer { border-top: 1px solid var(--color-border); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
