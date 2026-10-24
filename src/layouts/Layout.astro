@@ -100,13 +100,41 @@ const siteName = "Bretos Services";
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <p>
-          Bretos Services · Proyecto piloto · Estado presentado con transparencia
-        </p>
-        <p>
-          Vista previa pública · No es una oferta comercial cerrada
-        </p>
+      <div class="container footer-shell">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <a href="/" class="footer-logo" aria-label={`${siteName} — inicio`}>
+              <img src="/images/bretos-services-logo.png" alt="Bretos Services" width="445" height="197" loading="lazy" />
+            </a>
+            <p>Proyecto chileno en etapa piloto, explorando soluciones de conexión digital para negocios independientes.</p>
+            <div class="footer-status" aria-label="Estado actual del proyecto">
+              <span><i aria-hidden="true"></i> Piloto en validación</span>
+              <span>Sin stock · Sin compra online</span>
+            </div>
+          </div>
+
+          <nav class="footer-nav" aria-label="Enlaces del proyecto">
+            <h2>Explora</h2>
+            <a href="/catalogo">Líneas en exploración</a>
+            <a href="/nosotros">Sobre el proyecto</a>
+            <a href="/ruta">Ruta y avances</a>
+            <a href="/contenidos">Centro de contenidos</a>
+          </nav>
+
+          <div class="footer-contact">
+            <h2>Contacto</h2>
+            <p>¿Quieres conversar sobre el piloto o su evolución?</p>
+            <a class="footer-contact-link" href="https://wa.me/56936512828" target="_blank" rel="noopener noreferrer">
+              Escribir por WhatsApp <span aria-hidden="true">↗</span>
+            </a>
+            <small>El contacto no confirma disponibilidad comercial.</small>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© {new Date().getFullYear()} Bretos Services · Proyecto en validación</span>
+          <span class="preview-label"><i aria-hidden="true"></i> Vista previa pública · No es el sitio comercial definitivo</span>
+        </div>
       </div>
     </footer>
 

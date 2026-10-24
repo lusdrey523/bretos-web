@@ -203,3 +203,28 @@ body[data-page="/ruta"] .step--now .step-label { color:#d5ddda; }
 /* Los bloques que ya son carbón en páginas internas también reciben color claro. */
 body[data-page="/nosotros"] .about-layout [style*="background:#111"],
 body[data-page="/contenidos"] .content-grid .card[style*="background:#111"] { color:#d5ddda; }
+
+/* Pie profesional que comunica con precisión la etapa real del proyecto y la preview. */
+.site-footer{padding:0;background:#171b1c;color:#f5f7f6;border-top:3px solid #18c7c8}
+.footer-shell{padding-block:clamp(2.5rem,5vw,4.2rem) 1.2rem}
+.footer-main{display:grid;grid-template-columns:1fr;gap:2.5rem;padding-bottom:2.5rem}
+.footer-brand{max-width:31rem}
+.footer-logo{display:inline-flex;margin-bottom:1rem}
+.footer-logo img{display:block;width:clamp(180px,24vw,230px);height:auto;filter:drop-shadow(0 2px 12px rgba(24,199,200,.12))}
+.site-footer .footer-brand p,.site-footer .footer-contact p{max-width:42ch;margin:0 0 1.1rem;color:#d4ddda;font-size:.94rem;line-height:1.65}
+.footer-status{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+.footer-status span{display:inline-flex;align-items:center;gap:.45rem;padding:.38rem .65rem;border:1px solid #485252;border-radius:999px;background:#222829;color:#dce5e2;font-size:.74rem;font-weight:650}
+.footer-status span:first-child{border-color:#236260;color:#9be5df}
+.footer-status i,.preview-label i{width:.48rem;height:.48rem;flex:0 0 auto;border-radius:50%;background:#18c7c8}
+.footer-nav,.footer-contact{display:flex;flex-direction:column;align-items:flex-start;gap:.65rem}
+.site-footer .footer-nav h2,.site-footer .footer-contact h2{margin:0 0 .25rem;color:#fff;font-family:var(--font-sans);font-size:.84rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.site-footer .footer-nav a{color:#d4ddda;font-size:.9rem;text-underline-offset:.22em}
+.site-footer .footer-nav a:hover{color:#78e5df}
+.footer-contact-link{display:inline-flex;min-height:44px;align-items:center;gap:.7rem;padding:.65rem 1rem;border:1px solid #18c7c8;border-radius:999px;background:#18c7c8;color:#0c1717;font-size:.88rem;font-weight:800}
+.footer-contact-link:hover{background:#70e6e0;color:#071212;text-decoration:none}
+.site-footer .footer-contact small{max-width:30ch;color:#abb8b5;font-size:.76rem;line-height:1.5}
+.footer-bottom{display:flex;flex-direction:column;gap:.7rem;padding-top:1rem;border-top:1px solid #384142;color:#b8c3c0;font-size:.74rem;line-height:1.5}
+.preview-label{display:inline-flex;align-items:flex-start;gap:.5rem;color:#d4ddda}
+.preview-label i{margin-top:.33rem;background:#d6a64d}
+@media(min-width:760px){.footer-main{grid-template-columns:minmax(0,1.45fr) minmax(11rem,.75fr) minmax(14rem,.8fr);gap:clamp(2rem,5vw,5rem)}.footer-bottom{flex-direction:row;justify-content:space-between;align-items:center}}
+@media(prefers-reduced-motion:reduce){.footer-contact-link{transition:none}}
