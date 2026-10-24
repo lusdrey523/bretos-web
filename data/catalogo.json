@@ -1,55 +1,23 @@
 {
-  "version": "1.0",
-  "updated": "2026-10-21",
-  "source": "Documento de alineación v1.1 + aprobación Luis",
+  "version": "1.1",
+  "updated": "2026-10-24",
+  "source": "Alcance actual de las dos líneas iniciales de Breto’s Services, revisado el 24-10-2026",
   "items": [
     {
-      "id": "nfc-qr-perfiles-sociales",
-      "name": "Tarjetas NFC/QR para perfiles sociales",
+      "id": "tarjetas-nfc-qr-resenas-google",
+      "name": "Tarjetas NFC/QR para reseñas auténticas en Google",
       "status": "pilot",
       "category": "nfc-qr",
-      "description": "Tarjetas físicas con NFC y QR orientadas a perfiles de redes sociales.",
-      "notes": "Estado consignado y aprobado por Luis."
+      "description": "Línea conceptual para facilitar que el cliente llegue al perfil de reseñas del negocio. Las reseñas son voluntarias; no se garantizan reseñas ni resultados.",
+      "notes": "Línea en etapa piloto y validación. No disponible para compra desde el sitio; precio y producción comercial no confirmados."
     },
     {
-      "id": "menus-digitales-qr",
-      "name": "Menús digitales/QR",
+      "id": "tarjetas-nfc-qr-contacto-digital",
+      "name": "Tarjetas NFC/QR de contacto digital",
       "status": "pilot",
       "category": "nfc-qr",
-      "description": "Soluciones de menú digital accesibles por QR.",
-      "notes": "Estado consignado y aprobado por Luis."
-    },
-    {
-      "id": "nfc-qr-personalizadas-multi-enlace",
-      "name": "Tarjetas NFC/QR personalizadas o multi-enlace",
-      "status": "pilot",
-      "category": "nfc-qr",
-      "description": "Tarjetas NFC/QR con enlaces personalizados o múltiples destinos.",
-      "notes": "Estado consignado y aprobado por Luis."
-    },
-    {
-      "id": "diseno-desarrollo-web",
-      "name": "Diseño y desarrollo web",
-      "status": "pilot",
-      "category": "servicios",
-      "description": "Servicios de diseño y desarrollo de sitios web.",
-      "notes": "Estado consignado y aprobado por Luis."
-    },
-    {
-      "id": "asistentes-ia-whatsapp",
-      "name": "Asistentes de IA para WhatsApp",
-      "status": "planned",
-      "category": "ia",
-      "description": "Asistentes basados en IA orientados a atención por WhatsApp.",
-      "notes": "Estado consignado y aprobado por Luis."
-    },
-    {
-      "id": "nfc-qr-resenas-google",
-      "name": "Tarjetas NFC/QR para reseñas de Google",
-      "status": "verification_required",
-      "category": "nfc-qr",
-      "description": "Tarjetas NFC/QR orientadas a facilitar reseñas en Google.",
-      "notes": "Propuesta pendiente de verificación; no presentar como oferta disponible."
+      "description": "Línea conceptual para compartir el contacto digital de un negocio y dirigir a destinos elegidos por ese negocio.",
+      "notes": "Línea en etapa piloto y validación. No disponible para compra desde el sitio; precio y producción comercial no confirmados."
     }
   ]
 }

@@ -11,7 +11,7 @@ const featured = items.slice(0, 3);
       <div class="hero-copy">
         <span class="eyebrow">Proyecto piloto · Chile</span>
         <h1>Un destino claro para cada conexión</h1>
-        <p class="tagline">Exploramos soluciones simples para que un negocio conecte con sus clientes mediante NFC/QR y los dirija al destino digital que elija, con el estado del proyecto siempre visible.</p>
+        <p class="tagline">Validamos dos líneas de tarjetas NFC/QR para negocios independientes: una orientada a reseñas auténticas y otra a compartir contacto digital. Son conceptos en piloto, no productos disponibles para compra.</p>
         <div class="hero-actions">
           <a class="btn btn--primary" href="/ruta">Conoce la ruta del proyecto</a>
           <a class="btn btn--ghost" href="/catalogo">Ver líneas en exploración</a>
@@ -43,8 +43,8 @@ const featured = items.slice(0, 3);
 
   <section class="section section--soft">
     <div class="container">
-      <div class="section-heading"><div><span class="eyebrow eyebrow--dark">Soluciones en exploración</span><h2>Dos líneas, una misma prioridad: utilidad verificable</h2></div><a href="/catalogo">Ver el catálogo →</a></div>
-      <p class="section-lead">La primera etapa se concentra en herramientas NFC/QR y destinos digitales para negocios independientes. Cada opción se mantiene en su estado real de validación.</p>
+      <div class="section-heading"><div><span class="eyebrow eyebrow--dark">Soluciones en exploración</span><h2>Dos líneas en validación, una misma prioridad: utilidad verificable</h2></div><a href="/catalogo">Ver el catálogo →</a></div>
+      <p class="section-lead">La validación inicial se limita a dos líneas: tarjetas para facilitar el acceso a reseñas auténticas en Google y tarjetas de contacto digital con destinos elegidos por cada negocio. No hay venta desde este sitio ni disponibilidad comercial confirmada.</p>
       <div class="product-grid">{featured.map((item) => <ProductCard id={item.id} name={item.name} status={item.status} description={item.description} category={item.category} />)}</div>
     </div>
   </section>
@@ -61,3 +61,4 @@ const featured = items.slice(0, 3);
 .hero{background:#0a0a0a;color:#fff;padding:clamp(3.7rem,8vw,7rem) 0}.hero h1{color:#fff;font-size:clamp(2.6rem,6vw,5rem);line-height:1.04;letter-spacing:-.045em}.hero-layout{display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:clamp(2rem,5vw,5rem)}.hero-copy{max-width:620px}.connection-figure{margin:0;padding:1.3rem;border:1px solid #2e3b3b;border-radius:1.3rem;background:#101818}.connection-figure svg{display:block;width:100%;height:auto}.diagram-box{fill:#141e1e;stroke:#506363;stroke-width:1.5}.diagram-card{fill:#172728;stroke:#18c7c8}.route-line{stroke:#18c7c8;stroke-width:2;stroke-dasharray:5 7}.route-node,.tap-dot{fill:#18c7c8}.store-icon,.tap-icon,.web-icon{fill:none;stroke:#18c7c8;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.connection-figure text{fill:#fff;font:700 11px system-ui;letter-spacing:1.4px}.connection-figure .diagram-caption{fill:#b5c9c9;font-size:12px;font-weight:500;letter-spacing:.3px}.hero .hero-note{color:#b5c9c9}.hero-actions{gap:.8rem;flex-wrap:wrap}.hero .btn--ghost{border-color:#607070;color:#fff}.hero .btn--ghost:hover{border-color:#18c7c8;color:#18c7c8}
 .eyebrow{display:inline-block;color:#8de9e6;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.8rem}.eyebrow--dark{color:#087f82}.hero{text-align:left}.hero h1{max-width:52rem;margin:0 0 1rem}.hero .tagline{margin:0 0 1.7rem;max-width:44rem}.hero-actions{justify-content:flex-start}.hero-note{margin:1.3rem 0 0;color:#cbd5d7;font-size:.85rem}.trust-strip{padding:1.25rem 0;border-bottom:1px solid var(--color-border)}.trust-grid{display:grid;gap:1rem;grid-template-columns:1fr}.trust-grid div{display:grid;gap:.1rem}.trust-grid strong{font-size:.96rem}.trust-grid span{color:var(--color-muted);font-size:.88rem}.section-heading,.editorial-teaser{display:flex;align-items:end;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}.section-heading h2,.editorial-teaser h2{max-width:45rem;margin-bottom:.3rem}.section-lead{max-width:48rem;margin:1rem 0 1.6rem}.roadmap-teaser{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}.roadmap-teaser>div{max-width:46rem}.roadmap-teaser p,.editorial-teaser p{max-width:44rem;margin-bottom:0}.editorial-teaser a,.section-heading>a{font-weight:700;color:#087f82}@media(max-width:760px){.hero-layout{grid-template-columns:1fr}.connection-figure{max-width:520px}.hero h1{max-width:12ch}.trust-grid{grid-template-columns:1fr}.trust-grid div{padding:.75rem 0;border-bottom:1px solid var(--color-border)}}@media(min-width:761px){.trust-grid{grid-template-columns:repeat(3,1fr);gap:2rem}}
 </style>
+

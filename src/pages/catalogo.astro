@@ -8,13 +8,13 @@ const items = catalogo.items ?? [];
 
 <Layout
   title="Catálogo — Bretos Services"
-  description="Ofertas y estados comerciales de Bretos Services (fuente central G1)."
+  description="Líneas NFC/QR en etapa piloto y validación; sin oferta comercial confirmada."
   currentPath="/catalogo"
 >
   <section class="section">
     <div class="container">
       <div class="draft-banner" role="status">
-        Líneas en etapa piloto · La presencia en este catálogo no implica disponibilidad inmediata ni precio confirmado.
+        Dos líneas en validación · No hay compra, precio ni disponibilidad comercial confirmados desde este sitio.
       </div>
       <h1>Catálogo de servicios</h1>
       <p class="catalog-intro">
@@ -24,7 +24,7 @@ const items = catalogo.items ?? [];
       {items.length === 0 ? (
         <div class="empty-state">
           <strong>Sin ofertas cargadas</strong>
-          <p>La fuente central no contiene ítems en este momento.</p>
+          <p>Las líneas se publicarán cuando exista información validada y aprobada.</p>
         </div>
       ) : (
         <div class="product-grid catalog-index">
@@ -45,4 +45,5 @@ const items = catalogo.items ?? [];
 <style>
 .catalog-intro{margin-bottom:2rem;max-width:40rem}.catalog-index{display:block;border-top:2px solid #0a0a0a}.catalog-index :global(.product-card){display:grid;grid-template-columns:minmax(10rem,.7fr) minmax(14rem,1.5fr);align-items:start;gap:1.3rem 2rem;padding:1.5rem .2rem;border:0;border-bottom:1px solid var(--color-border);border-radius:0;background:transparent;box-shadow:none}.catalog-index :global(.product-card h3){font-size:1.2rem;margin:0}.catalog-index :global(.product-card .desc){margin:0;color:#39464b}.catalog-index :global(.product-card .meta){grid-column:2;justify-content:flex-start}.catalog-index :global(.badge){letter-spacing:.025em}@media(max-width:600px){.catalog-index :global(.product-card){grid-template-columns:1fr;gap:.55rem}.catalog-index :global(.product-card .meta){grid-column:1}}
 </style>
+
 
