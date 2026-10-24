@@ -64,3 +64,109 @@ body[data-page="/contenidos"] .section{background:radial-gradient(ellipse at 50%
 @media(max-width:759px){.hero{padding-block:4.5rem 3.5rem}.hero h1{font-size:clamp(3.15rem,14vw,5rem)}.connection-figure{border-radius:18px}.trust-grid div{padding-block:.65rem}.section-heading,.editorial-teaser,.roadmap-teaser{align-items:flex-start}body[data-page="/catalogo"] .catalog-index{grid-template-columns:1fr}body[data-page="/contacto"] .contact-layout{display:block}body[data-page="/contacto"] .contact-channel{margin:1.5rem 0}body[data-page="/contacto"] .contact-form-note{margin-top:1rem}body[data-page="/ruta"] .step{padding-right:1rem;padding-left:1.7rem}body[data-page="/contenidos"] .content-grid{grid-template-columns:1fr}body[data-page="/contenidos"] .content-grid article{padding:1.3rem;border-right:1px solid var(--color-border)}.roadmap-teaser,.editorial-teaser{border-radius:18px}}
 @media(min-width:760px) and (max-width:1049px){.nav-desktop{gap:.6rem}.nav-desktop a{font-size:.78rem}.brand-logo{width:122px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+/* G10 — fondo claro del logo; negros como niveles semánticos, turquesa como acento. */
+:root {
+  color-scheme: light;
+  --black-950:#111516; /* titulares y máxima jerarquía */
+  --black-900:#202627; /* textos principales y acción destacada */
+  --black-850:#303738; /* bloques y tarjetas de énfasis */
+  --black-800:#454d4e; /* nivel secundario */
+  --black-750:#596263; /* metadatos y estados secundarios */
+  --black-700:#717a7b; /* texto auxiliar con uso medido */
+  --black-600:#8d9697; /* líneas y divisores */
+  --white-100:#fff;
+  --white-200:#f5f7f6;
+  --white-300:#e8edeb;
+  --white-400:#637071;
+  --color-bg:#fff;
+  --color-bg-soft:#f5f7f6;
+  --color-text:var(--black-950);
+  --color-text-secondary:var(--black-900);
+  --color-muted:#5c6667;
+  --color-brand-dark:var(--black-950);
+  --color-border:#d9e0de;
+  --color-pilot:#087f82;
+  --color-planned:#404d65;
+  --color-verification:#76520c;
+  --color-paused:#596263;
+  --color-available:#23673f;
+  --color-accent-ink:#087f82;
+  --color-line:#d9e0de;
+  --color-paper:#f5f7f6;
+  --color-ink-soft:#354041;
+}
+html,body{background:#fff;color:var(--black-950)}
+body{background:#fff}
+.site-header{background:rgba(255,255,255,.94);border-bottom-color:#e0e5e3}
+.logo-link{color:var(--black-950)}
+.nav-desktop a{color:var(--black-800)}
+.nav-desktop a:hover,.nav-desktop a[aria-current="page"]{color:var(--black-950)}
+.menu-toggle{background:#fff;color:var(--black-950)}
+.nav-mobile{background:#fff}.nav-mobile a{color:var(--black-900)}
+.hero{background:radial-gradient(ellipse at 85% 25%,rgba(24,199,200,.10),transparent 28rem),linear-gradient(120deg,#fff 0%,#fff 58%,#f2fafa 100%);border-bottom:1px solid #dce5e3}
+.hero:before{border-color:rgba(8,127,130,.15);box-shadow:0 0 0 3rem rgba(8,127,130,.035),0 0 0 7rem rgba(8,127,130,.025)}
+.hero h1{color:var(--black-950)}.hero .tagline{color:var(--black-800)}.hero-note{color:var(--black-750)}
+.hero .btn--ghost{border-color:var(--black-700);background:#fff;color:var(--black-900)}
+.eyebrow{color:#087f82}.eyebrow--dark{color:#087f82}
+.connection-figure{border-color:#333c3d;background:linear-gradient(145deg,#202627,#111516);box-shadow:0 22px 65px rgba(13,24,24,.16),0 0 45px rgba(24,199,200,.08)}
+.trust-strip{background:#f5f7f6;border-bottom-color:#d9e0de}.trust-grid strong{color:var(--black-900)}.trust-grid span{color:var(--black-750)}
+.section--soft{background:#f5f7f6;border-block-color:#e0e5e3}
+.section-heading h2,.editorial-teaser h2,.roadmap-teaser h2{color:var(--black-950)}
+.section-lead,.roadmap-teaser p,.editorial-teaser p{color:var(--black-800)}
+.product-card{border-color:#d9e0de;background:#fff;box-shadow:0 12px 35px rgba(17,21,22,.06)}
+.product-card h3{color:var(--black-950)}.product-card .desc{color:var(--black-800)}
+.product-card:nth-child(2){background:#f5f7f6;border-color:#cbd5d2}
+.roadmap-teaser{border-color:#d9e0de;background:#f5f7f6}.editorial-teaser{border-color:#d9e0de;background:#fff}
+.site-footer{background:linear-gradient(100deg,#202627,#303738);border-top:3px solid var(--color-accent)}
+.site-footer p{color:#f5f7f6}
+.btn--primary{background:var(--color-accent);color:#071212}.btn--primary:hover{background:#42d6d3;color:#071212}
+.btn--ghost{border-color:#c7d0ce;background:#fff;color:var(--black-900)}.btn--ghost:hover{border-color:var(--color-accent-ink);color:var(--color-accent-ink)}
+.badge--pilot{background:#e6f8f6;color:#086b6c}.badge--planned{background:#eef1f6;color:#35435c}.badge--verification_required{background:#fbf3df;color:#76520c}.badge--paused{background:#ecefee;color:#505a5a}.badge--available{background:#e9f5ed;color:#23673f}
+.draft-banner{background:#fff8e9;border-color:#e7cb94;border-left-color:#b47a18;color:#61450d}
+.empty-state{background:#f8faf9;color:var(--black-750)}.empty-state strong{color:var(--black-950)}
+/* Catálogo: superficies blancas y humo; cada tarjeta diferencia su línea sin teñir toda la página. */
+body[data-page="/catalogo"] .section{background:radial-gradient(ellipse at 80% 0%,rgba(24,199,200,.075),transparent 30rem),#fff}
+body[data-page="/catalogo"] .catalog-index .product-card{background:#fff;border-color:#d6dddb}
+body[data-page="/catalogo"] .catalog-index .product-card:nth-child(even){background:#f4f7f6;border-color:#cbd4d2}
+body[data-page="/catalogo"] .catalog-index .product-card h3{color:var(--black-950)}
+body[data-page="/catalogo"] .catalog-index .product-card .desc{color:var(--black-800)}
+body[data-page="/catalogo"] .catalog-intro{color:var(--black-800)}
+/* Nosotros: jerarquía editorial con texto carbón y módulos de lectura claros. */
+body[data-page="/nosotros"] .section{background:#fff}
+body[data-page="/nosotros"] .about-layout>p{color:var(--black-800)}
+body[data-page="/nosotros"] .about-layout>p:first-of-type{background:#f4f7f6;border-left-color:var(--color-accent);color:var(--black-900)}
+body[data-page="/nosotros"] .about-layout h2{border-top-color:#d9e0de}
+body[data-page="/nosotros"] .transparency-list li{background:#f5f7f6;border-color:#dce2e0;color:var(--black-850)}
+body[data-page="/nosotros"] .about-tagline{color:#087f82}
+/* Contacto: el negro más profundo reserva contraste para el módulo de canal oficial. */
+body[data-page="/contacto"] .section{background:radial-gradient(ellipse at 90% 8%,rgba(24,199,200,.09),transparent 30rem),#fff}
+body[data-page="/contacto"] h1{color:var(--black-950)}
+body[data-page="/contacto"] .contact-layout>p{color:var(--black-800)}
+body[data-page="/contacto"] .contact-channel{background:linear-gradient(145deg,#202627,#111516);border-color:#303839}
+body[data-page="/contacto"] .contact-channel h2,body[data-page="/contacto"] .contact-channel h3{color:#fff}
+body[data-page="/contacto"] .contact-note{color:#e2e8e6}
+body[data-page="/contacto"] .contact-form-note{border-top-color:#454d4e;color:#c0cbc8}
+/* Ruta: fondo de papel; negro medio para etapas y el carbón más fuerte para el estado actual. */
+body[data-page="/ruta"] .section{background:radial-gradient(ellipse at 50% 0%,rgba(24,199,200,.06),transparent 28rem),#fff}
+body[data-page="/ruta"] .intro{color:var(--black-800)}
+body[data-page="/ruta"] .status-key{background:#f5f7f6;border-color:#d9e0de;color:var(--black-800)}
+body[data-page="/ruta"] .step{background:#f5f7f6;border-color:#d9e0de;border-left-color:#596263}
+body[data-page="/ruta"] .step--done{background:#f1f4f3;border-left-color:#454d4e}
+body[data-page="/ruta"] .step--now{background:#202627;border-color:#202627;border-left-color:var(--color-accent)}
+body[data-page="/ruta"] .step--now h2,body[data-page="/ruta"] .step--now .step-label{color:#fff}
+body[data-page="/ruta"] .step--now p{color:#e2e8e6}
+body[data-page="/ruta"] .step--now .step-state{background:#303738;color:#fff;border-left-color:var(--color-accent)}
+body[data-page="/ruta"] .step h2{color:var(--black-950)}body[data-page="/ruta"] .step p{color:var(--black-800)}
+body[data-page="/ruta"] .step-state{background:#e9efed;color:var(--black-850)}
+body[data-page="/ruta"] .trust-note{background:#f5f7f6;border-color:#d9e0de;color:var(--black-850)}
+/* Centro de contenidos: las tarjetas claras distinguen información prevista, aún no publicada. */
+body[data-page="/contenidos"] .section{background:radial-gradient(ellipse at 50% 0%,rgba(24,199,200,.06),transparent 30rem),#fff}
+body[data-page="/contenidos"] .lead{color:var(--black-800)}
+body[data-page="/contenidos"] .editorial-status{background:#fbf5e8;border-color:#e8d7b1;color:#604b20}
+body[data-page="/contenidos"] .editorial-status p{color:#514a3c}
+body[data-page="/contenidos"] .content-grid article{background:#fff;border-color:#d9e0de!important}
+body[data-page="/contenidos"] .content-grid article:nth-child(2){background:#f2f6f5;border-color:#cbd7d4!important}
+body[data-page="/contenidos"] .content-grid article h3{color:var(--black-950)}body[data-page="/contenidos"] .content-grid p{color:var(--black-800)}
+body[data-page="/contenidos"] .distribution-note{background:#f5f7f6;border-color:#d9e0de;color:var(--black-850)}
+@media(prefers-reduced-motion:reduce){.btn:hover{transform:none}}
