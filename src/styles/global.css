@@ -170,3 +170,36 @@ body[data-page="/contenidos"] .content-grid article:nth-child(2){background:#f2f
 body[data-page="/contenidos"] .content-grid article h3{color:var(--black-950)}body[data-page="/contenidos"] .content-grid p{color:var(--black-800)}
 body[data-page="/contenidos"] .distribution-note{background:#f5f7f6;border-color:#d9e0de;color:var(--black-850)}
 @media(prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+
+/* G11 — contraste puntual solicitado tras la revisión de Luis. */
+/* Solo los encabezados de páginas internas se oscurecen; Inicio y Contacto conservan su dirección actual. */
+body[data-page="/catalogo"] h1,
+body[data-page="/catalogo"] h2,
+body[data-page="/catalogo"] h3,
+body[data-page="/nosotros"] h1,
+body[data-page="/nosotros"] h2,
+body[data-page="/nosotros"] h3,
+body[data-page="/ruta"] h1,
+body[data-page="/ruta"] h2,
+body[data-page="/ruta"] h3,
+body[data-page="/contenidos"] h1,
+body[data-page="/contenidos"] h2,
+body[data-page="/contenidos"] h3 { color:#111516; }
+/* Tarjetas oscuras: gris claro para texto corrido; titulares casi blancos para jerarquía. */
+body[data-page="/catalogo"] .catalog-index .product-card { background:linear-gradient(145deg,#202627,#111516);border-color:#394142; }
+body[data-page="/catalogo"] .catalog-index .product-card:nth-child(even) { background:linear-gradient(145deg,#303738,#181c1d);border-color:#454d4e; }
+body[data-page="/catalogo"] .catalog-index .product-card h2,
+body[data-page="/catalogo"] .catalog-index .product-card h3 { color:#f5f7f6; }
+body[data-page="/catalogo"] .catalog-index .product-card p,
+body[data-page="/catalogo"] .catalog-index .product-card .desc,
+body[data-page="/catalogo"] .catalog-index .product-card li { color:#d5ddda; }
+body[data-page="/catalogo"] .catalog-index .product-card .badge { color:#b6f0e9; }
+/* El hito actual es oscuro intencionalmente; conserva texto claro para contraste. */
+body[data-page="/ruta"] .step--now h2,
+body[data-page="/ruta"] .step--now h3 { color:#f5f7f6; }
+body[data-page="/ruta"] .step--now p,
+body[data-page="/ruta"] .step--now li,
+body[data-page="/ruta"] .step--now .step-label { color:#d5ddda; }
+/* Los bloques que ya son carbón en páginas internas también reciben color claro. */
+body[data-page="/nosotros"] .about-layout [style*="background:#111"],
+body[data-page="/contenidos"] .content-grid .card[style*="background:#111"] { color:#d5ddda; }
