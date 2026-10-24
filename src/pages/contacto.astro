@@ -1,65 +1,53 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import empresa from '../../data/empresa.json';
 ---
 
 <Layout
-  title="Nosotros — Bretos Services"
-  description="Estado de la iniciativa Bretos Services. Etapa piloto."
-  currentPath="/nosotros"
+  title="Contacto — Bretos Services"
+  description="Contacto comercial de Bretos Services."
+  currentPath="/contacto"
 >
   <section class="section">
-    <div class="container about-layout">
+    <div class="container contact-layout">
       <div class="draft-banner" role="status">
-        Estado del proyecto · Actualizado según la información documentada disponible.
+        Canal de contacto en definición · Todavía no hay un medio habilitado desde este sitio.
       </div>
 
-      <h1>El proyecto y su estado actual</h1>
-
+      <h1>Contacto</h1>
       <p>
-        <strong>{empresa.name ?? "Bretos Services"}</strong> es un proyecto en
-        <strong> etapa piloto</strong>.
+        Breto's Services está en etapa piloto. Cuando se habilite un canal de contacto, lo indicaremos aquí con claridad.
       </p>
 
-      <p>
-        <strong>No existe entidad legal constituida.</strong>
-        No se presenta como sociedad, empresa formalizada ni operación consolidada.
-      </p>
-
-      {empresa.tagline && (
-        <p class="about-tagline">
-          «{empresa.tagline}»
+      <div class="contact-channel">
+        <p class="contact-kicker">
+          Canal de contacto · Próximamente
         </p>
-      )}
+        <span class="btn btn--disabled" aria-disabled="true">
+          Canal aún no habilitado
+        </span>
+        <p class="contact-note">
+          No se muestra un enlace hasta que el canal y el número oficial estén confirmados.
+        </p>
+      </div>
 
-      <h2>En qué estamos trabajando</h2>
-      <p>
-        Desarrollamos soluciones de conexión digital para negocios en Chile:
-        tarjetas NFC/QR, menús digitales y servicios relacionados,
-        con foco en utilidad práctica, validación gradual y transparencia sobre cada estado.
-      </p>
-
-      <h2>Cómo avanzamos</h2>
-      <p>Priorizamos soluciones sencillas, información verificable y respeto por las cuentas y decisiones de cada negocio. No prometemos reseñas, calificaciones ni resultados que no podemos garantizar.</p>
-      <p><a href="/ruta">Consulta la hoja de ruta, los avances registrados y lo que sigue pendiente →</a></p>
-
-      <h2>Transparencia</h2>
-      <ul class="transparency-list">
-        <li>Etapa: piloto</li>
-        <li>Entidad legal: no constituida</li>
-        <li>Este sitio es una vista previa pública; no es una oferta comercial cerrada</li>
-      </ul>
+      <div class="contact-form-note">
+        <strong>Formulario de contacto</strong><br />
+        Aún no está habilitado. Antes de activarlo se definirán los datos solicitados, su uso y los canales de atención.
+      </div>
     </div>
   </section>
 </Layout>
 <style>
-.about-layout { max-width: 68rem; }
-.about-tagline { font-style:italic; color:var(--color-muted); }
-.transparency-list { color:var(--color-text-secondary); padding-left:1.25rem; }
-.about-layout h1 { max-width: 16ch; margin-bottom: 1.4rem; }
-.about-layout > p, .about-layout > ul { max-width: 48rem; }
-.about-layout > p:first-of-type { font-size: 1.2rem; }
-.about-layout h2 { margin-top: 2.7rem !important; padding-top: 1.1rem; border-top: 1px solid #d8e0e0; }
-.about-layout ul { border-left: 3px solid #18c7c8; padding: .8rem 0 .8rem 1.4rem !important; background: #f5f7f7; }
-.about-layout li { padding: .3rem .7rem; }
+.contact-layout { max-width: 68rem; display: grid; grid-template-columns: minmax(0,1.05fr) minmax(17rem,.8fr); gap: 1.2rem 4rem; align-items: start; }
+.contact-layout > .draft-banner, .contact-layout > h1, .contact-layout > p { grid-column: 1; }
+.contact-layout > .draft-banner { margin: 0; }
+.contact-layout > h1 { margin: .5rem 0 0; }
+.contact-layout > p { max-width: 40rem; }
+.contact-channel { grid-column: 2; grid-row: 2 / span 2; align-self: stretch; padding: 1.5rem; border: 1px solid #d4dddd; border-top: 4px solid #18c7c8; background: #f5f7f7; }
+.contact-kicker { margin-bottom:1rem; color:var(--color-muted); }
+.contact-note { margin-top:1rem; font-size:.85rem; color:var(--color-muted); }
+.contact-channel p:first-child { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; color: #075d60; }
+.contact-form-note { grid-column: 1 / -1; padding: 1rem 0; border-top: 1px solid #d4dddd; color: #344449; }
+@media(max-width:700px){.contact-layout{display:block}.contact-channel{margin:1.5rem 0}.contact-form-note{margin-top:1rem}}
 </style>
+

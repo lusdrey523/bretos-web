@@ -46,6 +46,9 @@ jobs:
       - name: Build (Astro static)
         run: npm run build
 
+      - name: Check route-specific titles and headings
+        run: npm run check:routes
+
       - name: Validate all rendered routes and security assets
         run: |
           node <<'SCRIPT'
@@ -89,3 +92,4 @@ jobs:
           echo "- **SHA:** \`${{ github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- **Branch:** \`${{ github.ref_name }}\`" >> "$GITHUB_STEP_SUMMARY"
           ls -la screenshots/ >> "$GITHUB_STEP_SUMMARY" || true
+
