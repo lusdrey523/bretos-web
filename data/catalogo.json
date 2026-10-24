@@ -9,7 +9,7 @@
       "status": "pilot",
       "category": "nfc-qr",
       "description": "Línea conceptual para facilitar que el cliente llegue al perfil de reseñas del negocio. Las reseñas son voluntarias; no se garantizan reseñas ni resultados.",
-      "notes": "Línea en etapa piloto y validación. No disponible para compra desde el sitio; precio y producción comercial no confirmados."
+      "notes": "No hay stock disponible al 24-10-2026. Línea en etapa piloto y validación; no disponible para compra desde el sitio. Precio comercial no confirmado."
     },
     {
       "id": "tarjetas-nfc-qr-contacto-digital",
@@ -17,7 +17,7 @@
       "status": "pilot",
       "category": "nfc-qr",
       "description": "Línea conceptual para compartir el contacto digital de un negocio y dirigir a destinos elegidos por ese negocio.",
-      "notes": "Línea en etapa piloto y validación. No disponible para compra desde el sitio; precio y producción comercial no confirmados."
+      "notes": "No hay stock disponible al 24-10-2026. Línea en etapa piloto y validación; no disponible para compra desde el sitio. Precio comercial no confirmado."
     }
   ]
 }

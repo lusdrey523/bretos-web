@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updated": "2026-10-21",
+  "updated": "2026-10-24",
   "status": "draft",
   "name": "Bretos Services",
   "legal_entity": false,
@@ -11,8 +11,9 @@
   "vision": null,
   "principles": [],
   "contact": {
-    "whatsapp": null,
-    "notes": "Número oficial pendiente de confirmación formal para codificación. No inventar."
+    "whatsapp": "+56 9 3651 2828",
+    "notes": "WhatsApp oficial confirmado por Luis el 24-10-2026."
   },
   "notes": "Textos de misión, visión y principios son borradores hasta aprobación explícita de Luis."
 }
+
