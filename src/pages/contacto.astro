@@ -4,51 +4,60 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Contacto — Bretos Services"
-  description="Contacto comercial de Bretos Services."
+  description="Contacto de Bretos Services por WhatsApp oficial. Proyecto en etapa piloto, sin stock confirmado ni venta en línea."
   currentPath="/contacto"
 >
-  <section class="section">
-    <div class="container contact-layout">
-      <div class="draft-banner" role="status">
-        WhatsApp oficial confirmado · Este canal abre una conversación con Bretos Services.
-      </div>
-
+  <section class="page-head">
+    <div class="wrap">
+      <span class="kicker">Contacto</span>
       <h1>Contacto</h1>
-      <p>
-        Bretos Services está en etapa piloto y actualmente no cuenta con stock disponible. Para consultas, puedes escribir al WhatsApp oficial.
+      <p class="lead">
+        El único canal oficial es WhatsApp. No hay formulario, no se piden datos desde esta página y
+        escribir no constituye una compra.
       </p>
+    </div>
+  </section>
 
-      <div class="contact-channel">
-        <p class="contact-kicker">
-          WhatsApp oficial
-        </p>
-        <a class="btn btn--primary" href="https://wa.me/56936512828" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp para escribir a Bretos Services al +56 9 3651 2828">
-          Escribir por WhatsApp
-        </a>
-        <p class="contact-note">
-          +56 9 3651 2828 · Canal oficial de contacto. No hay stock disponible; escribir no constituye una compra ni confirma disponibilidad.
-        </p>
+  <section class="section section--tight">
+    <div class="wrap contact-grid">
+      <div>
+        <h2>Qué puedes preguntar</h2>
+        <ul class="contact-details">
+          <li><strong>Sobre una línea del catálogo:</strong> qué contempla, qué no incluye y en qué estado está.</li>
+          <li><strong>Sobre el proyecto:</strong> etapa actual, avances registrados y qué falta.</li>
+          <li><strong>Sobre BAI:</strong> por qué está inactivo y qué falta para activarlo.</li>
+        </ul>
+
+        <h3 style="margin-top:1.8rem">Qué no se puede confirmar todavía</h3>
+        <ul class="contact-details">
+          <li>Precios, plazos de entrega y condiciones de compra.</li>
+          <li>Stock o disponibilidad inmediata de las piezas físicas.</li>
+          <li>Resultados: reseñas, calificaciones, tráfico o ventas.</li>
+        </ul>
+
+        <div class="notice" style="margin-top:1.6rem">
+          <strong>Sin formulario.</strong> Esta página no recopila ni envía datos. Si decides escribir
+          por WhatsApp, la conversación ocurre en WhatsApp y queda sujeta a sus condiciones.
+        </div>
       </div>
 
-      <div class="contact-form-note">
-        <strong>Formulario de contacto</strong><br />
-No hay formulario ni se solicitan datos personales desde esta página. Si nos escribes por WhatsApp, la conversación continúa en la plataforma de WhatsApp.
+      <div class="contact-panel">
+        <h2>WhatsApp oficial</h2>
+        <p class="number">+56 9 3651 2828</p>
+        <p>
+          <a class="btn btn--primary" href="https://wa.me/56936512828" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp y escribir a Bretos Services al +56 9 3651 2828">
+            Abrir WhatsApp
+          </a>
+        </p>
+        <p>
+          Abrir el enlace es una decisión tuya. Este sitio no envía mensajes, no notifica y no
+          transfiere datos por su cuenta.
+        </p>
+        <small>
+          Canal oficial confirmado. No hay stock confirmado ni venta en línea; escribir no confirma
+          disponibilidad.
+        </small>
       </div>
     </div>
   </section>
 </Layout>
-<style>
-.contact-layout { max-width: 68rem; display: grid; grid-template-columns: minmax(0,1.05fr) minmax(17rem,.8fr); gap: 1.2rem 4rem; align-items: start; }
-.contact-layout > .draft-banner, .contact-layout > h1, .contact-layout > p { grid-column: 1; }
-.contact-layout > .draft-banner { margin: 0; }
-.contact-layout > h1 { margin: .5rem 0 0; }
-.contact-layout > p { max-width: 40rem; }
-.contact-channel { grid-column: 2; grid-row: 2 / span 2; align-self: stretch; padding: 1.5rem; border: 1px solid #d4dddd; border-top: 4px solid #18c7c8; background: #f5f7f7; }
-.contact-kicker { margin-bottom:1rem; color:var(--color-muted); }
-.contact-note { margin-top:1rem; font-size:.85rem; color:var(--color-muted); }
-.contact-channel p:first-child { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; color: #075d60; }
-.contact-form-note { grid-column: 1 / -1; padding: 1rem 0; border-top: 1px solid #d4dddd; color: #344449; }
-@media(max-width:700px){.contact-layout{display:block}.contact-channel{margin:1.5rem 0}.contact-form-note{margin-top:1rem}}
-</style>
-
-
