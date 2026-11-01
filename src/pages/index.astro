@@ -1,69 +1,179 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProductCard from '../components/ProductCard.astro';
+import StatusBadge from '../components/StatusBadge.astro';
 import catalogo from '../../data/catalogo.json';
-const items = catalogo.items ?? [];
-const featured = items.slice(0, 3);
+import bai from '../../data/bai.json';
+
+const lineas = catalogo.items ?? [];
 ---
-<Layout title="Bretos Services — Conexión digital responsable" description="Proyecto piloto chileno que explora soluciones digitales prácticas para negocios independientes. Estado y alcance presentados con transparencia." currentPath="/">
-  <section class="hero">
-    <div class="container hero-layout">
-      <div class="hero-copy">
-        <span class="eyebrow">Proyecto piloto · Chile</span>
-        <h1>Un destino claro para cada conexión</h1>
-        <p class="tagline">Validamos dos líneas de tarjetas NFC/QR para negocios independientes: una orientada a reseñas auténticas y otra a compartir contacto digital. Son conceptos en piloto, no productos disponibles para compra.</p>
-        <div class="hero-actions">
-          <a class="btn btn--primary" href="/ruta">Conoce la ruta del proyecto</a>
-          <a class="btn btn--ghost" href="/catalogo">Ver líneas en exploración</a>
+
+<Layout
+  title="Bretos Services — Conexión digital para negocios, en etapa piloto"
+  description="Proyecto chileno en etapa piloto. Cuatro líneas previstas: tarjetas NFC/QR para reseñas, contacto digital, páginas web y agentes de IA. Sin stock confirmado ni venta en línea."
+  currentPath="/"
+>
+  <section class="home-hero">
+    <div class="wrap home-hero-grid">
+      <div>
+        <span class="kicker">Proyecto piloto · Chile</span>
+        <h1>Cuatro formas de conectar un negocio. Ninguna presentada como resuelta.</h1>
+        <p class="lead">
+          Bretos Services explora cómo un negocio independiente llega a su destino digital en menos
+          pasos. Aquí está cada línea con su estado real: lo que ya se definió, lo que está en
+          validación y lo que todavía es solo una intención.
+        </p>
+        <div class="actions">
+          <a class="btn btn--primary" href="/catalogo">Ver las cuatro líneas</a>
+          <a class="btn btn--ghost" href="/como-trabajamos">Cómo se plantea trabajar</a>
         </div>
-        <p class="hero-note">Etapa piloto y sin stock disponible. Este sitio no permite comprar ni confirma disponibilidad comercial.</p>
+        <p class="note" style="margin-top:1.2rem">
+          No hay stock confirmado ni venta en línea. Este sitio no permite comprar y no confirma
+          disponibilidad comercial.
+        </p>
       </div>
-      <figure class="connection-figure" aria-label="Esquema ilustrativo de conexión entre un negocio, una tarjeta NFC o QR y un destino digital elegido">
-        <svg viewBox="0 0 520 300" role="img" aria-labelledby="diagram-title diagram-desc">
-          <title id="diagram-title">Un recorrido de conexión</title><desc id="diagram-desc">Negocio, tarjeta NFC o QR y destino digital elegido, como conceptos en exploración.</desc>
-          <path class="route-line" d="M105 151H405"/><circle class="route-node" cx="105" cy="151" r="6"/><circle class="route-node" cx="260" cy="151" r="6"/><circle class="route-node" cx="405" cy="151" r="6"/>
-          <rect class="diagram-box" x="26" y="88" width="158" height="126" rx="18"/><rect class="diagram-box diagram-card" x="184" y="68" width="152" height="166" rx="18"/><rect class="diagram-box" x="336" y="88" width="158" height="126" rx="18"/>
-          <path class="store-icon" d="M70 133h68v48H70zM64 133l7-18h66l7 18M85 133v-18m18 18v-18m18 18v-18M86 181v-24h20v24"/>
-          <path class="tap-icon" d="M233 144a27 27 0 0 1 0 36m54-36a27 27 0 0 0 0 36m-42-26a12 12 0 0 1 0 16m30-16a12 12 0 0 0 0 16"/><circle class="tap-dot" cx="260" cy="162" r="3"/>
-          <circle class="web-icon" cx="415" cy="150" r="24"/><path class="web-icon" d="M391 150h48m-24-24c-11 13-11 35 0 48m0-48c11 13 11 35 0 48"/>
-          <text x="105" y="198" text-anchor="middle">NEGOCIO</text><text x="260" y="207" text-anchor="middle">NFC / QR</text><text x="415" y="198" text-anchor="middle">DESTINO ELEGIDO</text>
-          <text class="diagram-caption" x="260" y="270" text-anchor="middle">Un recorrido conceptual · aún en validación</text>
+
+      <figure class="home-signal">
+        <svg viewBox="0 0 520 300" role="img" aria-labelledby="senal-titulo senal-desc">
+          <title id="senal-titulo">Un recorrido de conexión</title>
+          <desc id="senal-desc">
+            Esquema conceptual: un negocio, una tarjeta con NFC o código QR, y el destino digital
+            que ese negocio elige. Es una ilustración del concepto, no una promesa de resultado.
+          </desc>
+
+          <path class="signal-line" d="M110 150H400" />
+          <circle class="signal-node" cx="110" cy="150" r="5" />
+          <circle class="signal-node" cx="255" cy="150" r="5" />
+          <circle class="signal-node" cx="400" cy="150" r="5" />
+
+          <rect class="signal-box" x="26" y="92" width="150" height="118" rx="14" />
+          <rect class="signal-box signal-box--focus" x="180" y="72" width="150" height="158" rx="14" />
+          <rect class="signal-box" x="336" y="92" width="150" height="118" rx="14" />
+
+          <path class="signal-icon" d="M66 130h62v46H66zM60 130l7-16h60l7 16M84 130v-16m18 16v-16m18 16v-16M84 176v-22h20v22" />
+          <path class="signal-icon" d="M228 140a26 26 0 0 1 0 34m52-34a26 26 0 0 0 0 34m-40-25a11 11 0 0 1 0 16m28-16a11 11 0 0 0 0 16" />
+          <circle class="signal-node" cx="255" cy="157" r="3" />
+          <circle class="signal-icon" cx="411" cy="148" r="22" />
+          <path class="signal-icon" d="M389 148h44m-22-22c-10 12-10 32 0 44m0-44c10 12 10 32 0 44" />
+
+          <text class="signal-text" x="101" y="204" text-anchor="middle">NEGOCIO</text>
+          <text class="signal-text" x="255" y="212" text-anchor="middle">NFC / QR</text>
+          <text class="signal-text" x="411" y="204" text-anchor="middle">DESTINO</text>
+          <text class="signal-caption" x="260" y="272" text-anchor="middle">Recorrido conceptual · en validación</text>
         </svg>
+        <figcaption>
+          La tarjeta es el puente; el destino lo elige cada negocio. El esquema describe el concepto,
+          no un resultado garantizado.
+        </figcaption>
       </figure>
     </div>
   </section>
 
-  <section class="section trust-strip" aria-label="Principios del proyecto">
-    <div class="container trust-grid">
-      <div><strong>Transparencia</strong><span>Estados reales, sin promesas infladas.</span></div>
-      <div><strong>Uso responsable</strong><span>Sin reseñas fabricadas ni apropiación de cuentas.</span></div>
-      <div><strong>Validación gradual</strong><span>Primero aprender; luego decidir qué escalar.</span></div>
-    </div>
-  </section>
-
-  <section class="section section--soft">
-    <div class="container">
-      <div class="section-heading"><div><span class="eyebrow eyebrow--dark">Soluciones en exploración</span><h2>Dos líneas en validación, una misma prioridad: utilidad verificable</h2></div><a href="/catalogo">Ver el catálogo →</a></div>
-      <p class="section-lead">La validación inicial se limita a dos líneas: tarjetas para facilitar el acceso a reseñas auténticas en Google y tarjetas de contacto digital con destinos elegidos por cada negocio. No hay stock disponible, venta desde este sitio ni disponibilidad comercial confirmada.</p>
-      <div class="product-grid">{featured.map((item) => <ProductCard id={item.id} name={item.name} status={item.status} description={item.description} category={item.category} />)}</div>
+  <section class="section section--tight">
+    <div class="wrap">
+      <ul class="principles">
+        <li><strong>Transparencia antes que entusiasmo</strong><span>Cada línea muestra si está en piloto, prevista o sin definir.</span></li>
+        <li><strong>Reseñas auténticas</strong><span>Ninguna opinión se fabrica, se compra ni se escribe por terceros.</span></li>
+        <li><strong>Validar primero</strong><span>Primero se aprende qué sirve; después se decide qué escalar.</span></li>
+      </ul>
     </div>
   </section>
 
   <section class="section">
-    <div class="container roadmap-teaser">
-      <div><span class="eyebrow eyebrow--dark">Qué sigue</span><h2>Construir confianza también significa mostrar el proceso</h2><p>La ruta separa lo ya definido, los avances registrados y las capacidades que todavía faltan: contenidos educativos, publicación editorial y canales de distribución.</p></div>
-      <a class="btn btn--primary" href="/ruta">Ver avances y próximos pasos</a>
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Líneas previstas para cotizar</span>
+          <h2>Cuatro líneas, cuatro estados distintos</h2>
+        </div>
+        <a class="link-signal" href="/catalogo">Ver el catálogo completo</a>
+      </div>
+
+      <ul class="line-index">
+        {lineas.map((linea, index) => (
+          <li>
+            <a class="line-row" href={`/catalogo/${linea.id}`}>
+              <span class="line-row-num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span>
+                <span class="line-row-title">{linea.short_name ?? linea.name}</span>
+                <span class="line-row-desc">{linea.description}</span>
+              </span>
+              <span class="line-row-meta">
+                <StatusBadge status={linea.status} />
+                {linea.provenance === 'propuesto' && (
+                  <span class="line-row-desc">Alcance por confirmar</span>
+                )}
+              </span>
+              <span class="line-row-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <p class="note" style="margin-top:1.2rem">
+        Las dos primeras líneas tienen descripción verificada al 24-10-2026 y siguen en etapa piloto.
+        Las otras dos se incorporaron como intención de negocio: no son capacidades operativas probadas.
+      </p>
     </div>
   </section>
-  <section class="section section--soft"><div class="container editorial-teaser"><div><span class="eyebrow eyebrow--dark">Aprendizaje abierto</span><h2>Contenidos útiles, con fuentes y contexto</h2><p>El Centro de contenidos se prepara para reunir noticias seleccionadas, guías y cursos TIC educativos. Aún no hay publicaciones aprobadas ni canales de distribución activos.</p></div><a href="/contenidos">Conocer el centro de contenidos →</a></div></section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="bai-band">
+        <div>
+          <span class="bai-state">{bai.state_label}</span>
+          <h2>BAI, el asistente del sitio</h2>
+          <p>
+            BAI será un asistente que responda con información aprobada y derive a una persona cuando
+            no sepa. Hoy su interfaz está preparada pero <strong>no responde</strong>: no hay proveedor
+            de IA conectado, ni clave, ni llamada externa.
+          </p>
+        </div>
+        <a class="btn btn--ghost-light" href="/bai">Ver el estado de BAI</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Método</span>
+          <h2>Sin prometer lo que todavía no se puede sostener</h2>
+        </div>
+        <a class="link-signal" href="/como-trabajamos">Leer el método completo</a>
+      </div>
+      <p class="lead">
+        El trabajo se plantea en tres momentos: entender el caso concreto, acordar por escrito el
+        alcance, y recién entonces construir. Lo que no está confirmado se dice como no confirmado.
+      </p>
+      <div class="actions">
+        <a class="btn btn--ghost" href="/ruta">Ver la ruta y los avances</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="kicker">Contacto</span>
+        <h2>Conversar no compromete nada</h2>
+        <p>
+          Si quieres preguntar por una línea del catálogo o por el estado del proyecto, el canal
+          oficial es WhatsApp. Escribir no constituye una compra ni confirma disponibilidad.
+        </p>
+      </div>
+      <div class="contact-panel">
+        <h3>WhatsApp oficial</h3>
+        <p class="number">+56 9 3651 2828</p>
+        <p>
+          <a class="btn btn--primary" href="https://wa.me/56936512828" target="_blank" rel="noopener noreferrer">
+            Abrir WhatsApp
+          </a>
+        </p>
+        <small>
+          Abrir WhatsApp es una acción tuya: este sitio no envía mensajes ni datos automáticamente.
+        </small>
+      </div>
+    </div>
+  </section>
 </Layout>
-<style>
-.hero{background:#0a0a0a;color:#fff;padding:clamp(3.7rem,8vw,7rem) 0}.hero h1{color:#fff;font-size:clamp(2.6rem,6vw,5rem);line-height:1.04;letter-spacing:-.045em}.hero-layout{display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:clamp(2rem,5vw,5rem)}.hero-copy{max-width:620px}.connection-figure{margin:0;padding:1.3rem;border:1px solid #2e3b3b;border-radius:1.3rem;background:#101818}.connection-figure svg{display:block;width:100%;height:auto}.diagram-box{fill:#141e1e;stroke:#506363;stroke-width:1.5}.diagram-card{fill:#172728;stroke:#18c7c8}.route-line{stroke:#18c7c8;stroke-width:2;stroke-dasharray:5 7}.route-node,.tap-dot{fill:#18c7c8}.store-icon,.tap-icon,.web-icon{fill:none;stroke:#18c7c8;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.connection-figure text{fill:#fff;font:700 11px system-ui;letter-spacing:1.4px}.connection-figure .diagram-caption{fill:#b5c9c9;font-size:12px;font-weight:500;letter-spacing:.3px}.hero .hero-note{color:#b5c9c9}.hero-actions{gap:.8rem;flex-wrap:wrap}.hero .btn--ghost{border-color:#607070;color:#fff}.hero .btn--ghost:hover{border-color:#18c7c8;color:#18c7c8}
-/* Ajuste de contraste validado en revisión del usuario. */
-.hero .tagline{color:#e2e8e6!important}
-.hero .btn--ghost{background:#303738!important;border-color:#8a9999!important;color:#fff!important}
-.hero .btn--ghost:hover{background:#202627!important;border-color:#18c7c8!important;color:#fff!important}
-.eyebrow{display:inline-block;color:#8de9e6;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.8rem}.eyebrow--dark{color:#087f82}.hero{text-align:left}.hero h1{max-width:52rem;margin:0 0 1rem}.hero .tagline{margin:0 0 1.7rem;max-width:44rem}.hero-actions{justify-content:flex-start}.hero-note{margin:1.3rem 0 0;color:#cbd5d7;font-size:.85rem}.trust-strip{padding:1.25rem 0;border-bottom:1px solid var(--color-border)}.trust-grid{display:grid;gap:1rem;grid-template-columns:1fr}.trust-grid div{display:grid;gap:.1rem}.trust-grid strong{font-size:.96rem}.trust-grid span{color:var(--color-muted);font-size:.88rem}.section-heading,.editorial-teaser{display:flex;align-items:end;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}.section-heading h2,.editorial-teaser h2{max-width:45rem;margin-bottom:.3rem}.section-lead{max-width:48rem;margin:1rem 0 1.6rem}.roadmap-teaser{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}.roadmap-teaser>div{max-width:46rem}.roadmap-teaser p,.editorial-teaser p{max-width:44rem;margin-bottom:0}.editorial-teaser a,.section-heading>a{font-weight:700;color:#087f82}@media(max-width:760px){.hero-layout{grid-template-columns:1fr}.connection-figure{max-width:520px}.hero h1{max-width:12ch}.trust-grid{grid-template-columns:1fr}.trust-grid div{padding:.75rem 0;border-bottom:1px solid var(--color-border)}}@media(min-width:761px){.trust-grid{grid-template-columns:repeat(3,1fr);gap:2rem}}
-</style>
-
-
