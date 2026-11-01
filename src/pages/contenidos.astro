@@ -1,25 +1,80 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Centro de contenidos — Bretos Services" description="Ruta editorial prevista para noticias, guías y cursos TIC educativos. Publicaciones y distribución aún no activas." currentPath="/contenidos">
-<section class="section"><div class="container content-wrap">
-  <span class="eyebrow">Aprendizaje abierto · En preparación</span>
-  <h1>Centro de contenidos</h1>
-  <p class="lead">Un espacio previsto para noticias seleccionadas, guías prácticas y cursos TIC educativos, presentado con contexto, fuentes y un estado editorial claro.</p>
-  <div class="editorial-status"><strong>Estado actual</strong><p>La estructura del centro está preparada; todavía no hay publicaciones aprobadas ni cursos disponibles. Tampoco hay canales de distribución activos. No queremos llenar el espacio con material sin revisar.</p></div>
-  <h2>Qué queremos ofrecer</h2>
-  <div class="content-grid">
-    <article class="card"><span class="kind">Noticias</span><h3>Actualidad con contexto</h3><p>Selección de novedades relevantes de tecnología y herramientas digitales, con fecha, fuente identificable y explicación de por qué importa.</p><span class="planned">Formato previsto · aún no publicado</span></article>
-    <article class="card"><span class="kind">Guías</span><h3>Pasos útiles para aplicar</h3><p>Recursos prácticos sobre presencia digital, NFC/QR y herramientas para negocios, distinguiendo información comprobada de recomendaciones.</p><span class="planned">Formato previsto · aún no publicado</span></article>
-    <article class="card"><span class="kind">Cursos TIC</span><h3>Aprender con una ruta clara</h3><p>Contenidos educativos de tecnologías de información y comunicación, con objetivos y materiales definidos antes de anunciar cualquier curso.</p><span class="planned">Oferta educativa en planificación</span></article>
-  </div>
-  <h2>Estándar editorial previsto</h2>
-  <ul class="editorial-rules"><li>Fecha de publicación y actualización visibles.</li><li>Autoría o entidad responsable identificada.</li><li>Fuentes enlazadas y separadas de opiniones o recomendaciones.</li><li>Correcciones y alcance de cada recurso transparentes.</li><li>Distinción entre noticias, orientación educativa y oferta comercial.</li></ul>
-  <aside class="distribution-note"><strong>Distribución:</strong> se definirán y probarán los canales antes de anunciarlos. WhatsApp, correo u otras plataformas no se consideran activos por el solo hecho de estar previstos.</aside>
-  <a class="back-link" href="/ruta">← Ver la hoja de ruta y los avances</a>
-</div></section>
-</Layout>
-<style>
-.content-wrap{max-width:980px}.eyebrow{display:inline-block;color:#087f82;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem}.lead{font-size:1.15rem;max-width:52rem}.editorial-status{padding:1.2rem 1.4rem;margin:1.5rem 0 2.2rem;border:1px solid #f0d8a8;border-left:4px solid #c78716;background:#fffaf0;border-radius:10px}.editorial-status strong{display:block;margin-bottom:.35rem}.editorial-status p{margin:0}.content-wrap h2{margin-top:2rem}.content-grid{display:grid;grid-template-columns:1fr;gap:0;border-top:2px solid #0a0a0a}.content-grid article{padding:1.25rem 0;border:0;border-bottom:1px solid var(--color-border);border-radius:0;background:transparent;box-shadow:none}.content-grid h3{margin:.45rem 0}.content-grid p{font-size:.95rem}.kind{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#087f82;font-weight:700}.planned{font-size:.81rem;font-weight:650;color:#59636c}.editorial-rules{padding-left:1.3rem;color:#374151}.editorial-rules li{margin:.55rem 0}.editorial-rules{color:#303738}.editorial-rules li{color:#303738}.editorial-rules li::marker{color:#087f82}.distribution-note{padding:1rem 1.2rem;background:#f3f5f7;border-radius:10px;color:#374151;margin:1.5rem 0}.back-link{font-weight:700;color:#087f82}@media(min-width:760px){.content-grid{grid-template-columns:repeat(3,1fr);gap:2rem}.content-grid article{padding:1.3rem 0;border-bottom:0;border-right:1px solid var(--color-border);padding-right:1.6rem}.content-grid article:last-child{border-right:0}}
-</style>
 
+<Layout
+  title="Centro de contenidos — Bretos Services"
+  description="Espacio previsto para noticias, guías y cursos TIC educativos. Sin publicaciones aprobadas ni canales de distribución activos."
+  currentPath="/contenidos"
+>
+  <section class="page-head">
+    <div class="wrap">
+      <span class="kicker">Aprendizaje abierto · en preparación</span>
+      <h1>Centro de contenidos</h1>
+      <p class="lead">
+        Un espacio previsto para noticias seleccionadas, guías prácticas y cursos TIC educativos,
+        presentado con contexto, fuentes y un estado editorial claro.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="notice notice--pending">
+        <strong>Estado actual:</strong> la estructura está preparada, pero no hay publicaciones
+        aprobadas ni cursos disponibles. Tampoco hay canales de distribución activos. No se llena el
+        espacio con material sin revisar.
+      </div>
+
+      <h2 style="margin-top:2rem">Qué se quiere ofrecer</h2>
+      <ul class="editorial-grid">
+        <li>
+          <span class="kind">Noticias</span>
+          <h3>Actualidad con contexto</h3>
+          <p>
+            Selección de novedades relevantes de tecnología y herramientas digitales, con fecha,
+            fuente identificable y explicación de por qué importa.
+          </p>
+          <span class="planned">Formato previsto · aún no publicado</span>
+        </li>
+        <li>
+          <span class="kind">Guías</span>
+          <h3>Pasos útiles para aplicar</h3>
+          <p>
+            Recursos prácticos sobre presencia digital, NFC/QR y herramientas para negocios,
+            distinguiendo información comprobada de recomendaciones.
+          </p>
+          <span class="planned">Formato previsto · aún no publicado</span>
+        </li>
+        <li>
+          <span class="kind">Cursos TIC</span>
+          <h3>Aprender con una ruta clara</h3>
+          <p>
+            Contenidos educativos de tecnologías de información y comunicación, con objetivos y
+            materiales definidos antes de anunciar cualquier curso.
+          </p>
+          <span class="planned">Oferta educativa en planificación</span>
+        </li>
+      </ul>
+
+      <h2 style="margin-top:2.4rem">Estándar editorial previsto</h2>
+      <ul class="rules-list">
+        <li>Fecha de publicación y de actualización visibles.</li>
+        <li>Autoría o entidad responsable identificada.</li>
+        <li>Fuentes enlazadas y separadas de opiniones o recomendaciones.</li>
+        <li>Correcciones y alcance de cada recurso explicitados.</li>
+        <li>Distinción entre noticia, orientación educativa y oferta comercial.</li>
+      </ul>
+
+      <div class="notice" style="margin-top:1.8rem">
+        <strong>Distribución:</strong> los canales se definirán y probarán antes de anunciarlos.
+        WhatsApp, correo u otras plataformas no se consideran activos por el solo hecho de estar previstos.
+      </div>
+
+      <div class="actions">
+        <a class="btn btn--ghost" href="/ruta">Ver la ruta y los avances</a>
+        <a class="btn btn--primary" href="/contacto">Contactar</a>
+      </div>
+    </div>
+  </section>
+</Layout>
