@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import catalogo from '../../../data/catalogo.json';
+
+export function getStaticPaths() {
+  const items = catalogo.items ?? [];
+  return items.map((item) => ({
+    params: { linea: item.id },
+    props: { item }
+  }));
+}
+
+const { item } = Astro.props;
+const items = catalogo.items ?? [];
+const otras = items.filter((linea) => linea.id !== item.id);
+const esPropuesta = item.provenance === 'propuesto';
+---
+
+<Layout
+  title={`${item.name} — Bretos Services`}
+  description={item.description}
+  currentPath="/catalogo"
+>
+  <section class="detail-head">
+    <div class="wrap">
+      <p class="breadcrumb">
+        <a href="/catalogo">Catálogo</a> <span aria-hidden="true">/</span> <span>{item.short_name ?? item.name}</span>
+      </p>
+      <StatusBadge status={item.status} />
+      <h1 style="margin-top:.8rem">{item.name}</h1>
+      <p class="lead">{item.description}</p>
+    </div>
+  </section>
+
+  <div class="wrap detail-layout">
+    <div class="detail-body">
+      <section>
+        <h2>Qué contempla</h2>
+        <ul>
+          {(item.scope ?? []).map((punto: string) => <li>{punto}</li>)}
+        </ul>
+      </section>
+
+      <section>
+        <h2>Qué no incluye ni promete</h2>
+        <ul>
+          {(item.not_included ?? []).map((punto: string) => <li>{punto}</li>)}
+        </ul>
+      </section>
+
+      <section>
+        <h2>Estado y disponibilidad</h2>
+        <p>{item.availability}</p>
+        {item.availability_note && <p class="note">{item.availability_note}</p>}
+        <p class="note">
+          Precio: {item.pricing} No se publican cifras, plazos de entrega ni condiciones de compra
+          mientras no estén confirmados.
+        </p>
+      </section>
+
+      {esPropuesta && (
+        <section>
+          <div class="notice notice--pending">
+            <strong>Línea prevista, no validada.</strong>
+            Esta ficha describe una intención de negocio. No hay servicio operativo, casos
+            entregados ni compromiso de entrega. El alcance se confirma caso a caso.
+          </div>
+        </section>
+      )}
+    </div>
+
+    <aside class="detail-facts" aria-labelledby="ficha-resumen">
+      <h2 id="ficha-resumen">Resumen de la línea</h2>
+      <StatusBadge status={item.status} />
+      <dl>
+        <dt>Disponibilidad</dt>
+        <dd>{item.availability}</dd>
+        <dt>Precio</dt>
+        <dd>{item.pricing}</dd>
+        <dt>Origen del dato</dt>
+        <dd>{esPropuesta ? 'Intención de negocio, alcance por confirmar' : 'Descripción verificada al 24-10-2026'}</dd>
+      </dl>
+      <div class="detail-facts-actions">
+        <a
+          class="btn btn--ghost"
+          href="https://wa.me/56936512828"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Preguntar por esta línea
+        </a>
+        <a class="btn btn--ghost" href="/catalogo">Volver al catálogo</a>
+      </div>
+      <p class="note" style="margin-top:.9rem">
+        El enlace abre WhatsApp por decisión tuya. Este sitio no envía mensajes ni datos.
+      </p>
+    </aside>
+  </div>
+
+  <section class="section section--soft">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Otras líneas del catálogo</h2>
+        <a class="link-signal" href="/catalogo">Ver todas</a>
+      </div>
+      <ul class="editorial-grid">
+        {otras.map((linea) => (
+          <ProductCard
+            id={linea.id}
+            name={linea.short_name ?? linea.name}
+            status={linea.status}
+            description={linea.availability}
+          />
+        ))}
+      </ul>
+    </div>
+  </section>
+</Layout>
