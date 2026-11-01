@@ -1,66 +1,79 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import empresa from '../../data/empresa.json';
+import catalogo from '../../data/catalogo.json';
+
+const lineas = catalogo.items ?? [];
+const enPiloto = lineas.filter((linea) => linea.status === 'pilot').length;
 ---
 
 <Layout
-  title="Nosotros — Bretos Services"
-  description="Estado de la iniciativa Bretos Services. Etapa piloto."
+  title="Proyecto — Bretos Services"
+  description="Estado real del proyecto Bretos Services: etapa piloto, sin entidad legal constituida y sin oferta comercial cerrada."
   currentPath="/nosotros"
 >
   <section class="section">
-    <div class="container about-layout">
-      <div class="draft-banner" role="status">
-        Estado del proyecto · Actualizado según la información documentada disponible.
-      </div>
-
+    <div class="wrap about">
+      <span class="kicker">El proyecto</span>
       <h1>El proyecto y su estado actual</h1>
 
-      <p>
-        <strong>{empresa.name ?? "Bretos Services"}</strong> es un proyecto en
-        <strong> etapa piloto</strong>.
+      <p class="pull">
+        <strong>{empresa.name ?? 'Bretos Services'}</strong> es un proyecto en etapa piloto.
+        No existe entidad legal constituida.
       </p>
 
       <p>
-        <strong>No existe entidad legal constituida.</strong>
-        No se presenta como sociedad, empresa formalizada ni operación consolidada.
+        No se presenta como sociedad, empresa formalizada ni operación consolidada. Tampoco como una
+        marca con clientes, ventas o resultados que se puedan mostrar: no los hay. Lo que sí existe
+        es un trabajo de definición, documentación y validación que este sitio describe sin adornos.
       </p>
 
-      {empresa.tagline && (
-        <p class="about-tagline">
-          «{empresa.tagline}»
-        </p>
-      )}
+      {empresa.tagline && <p class="about-tagline" style="color:var(--accent-ink);font-weight:650">«{empresa.tagline}»</p>}
 
-      <h2>En qué estamos trabajando</h2>
+      <h2>En qué se está trabajando</h2>
       <p>
-        El alcance inicial de validación contempla dos líneas de tarjetas NFC/QR para negocios independientes: acceso a reseñas auténticas en Google y contacto digital mediante destinos elegidos por cada negocio. Son líneas en etapa piloto. Actualmente no hay stock disponible; el sitio no permite comprar y los precios comerciales no están confirmados.
+        El foco declarado son negocios independientes: cafeterías y restaurantes, y estética,
+        barberías y peluquerías. Sobre ese foco se definieron {lineas.length} líneas de conexión
+        digital, de las cuales {enPiloto} están en etapa piloto y el resto son intención de negocio
+        con alcance por confirmar.
       </p>
+      <ul class="rules-list">
+        {lineas.map((linea) => (
+          <li>
+            <a href={`/catalogo/${linea.id}`}>{linea.short_name ?? linea.name}</a>
+            {' — '}
+            {linea.status === 'pilot' ? 'en etapa piloto' : 'línea prevista, alcance por confirmar'}.
+          </li>
+        ))}
+      </ul>
 
-      <h2>Cómo avanzamos</h2>
-      <p>Priorizamos soluciones sencillas, información verificable y respeto por las cuentas y decisiones de cada negocio. No prometemos reseñas, calificaciones ni resultados que no podemos garantizar.</p>
-      <p><a href="/ruta">Consulta la hoja de ruta, los avances registrados y lo que sigue pendiente →</a></p>
+      <h2>Cómo se avanza</h2>
+      <p>
+        Priorizando soluciones sencillas, información verificable y respeto por las cuentas y
+        decisiones de cada negocio. No se prometen reseñas, calificaciones ni resultados que no se
+        pueden garantizar, y cuando un dato falta se dice que falta.
+      </p>
+      <p><a href="/ruta">Consultar la ruta, los avances registrados y lo que sigue pendiente →</a></p>
 
       <h2>Transparencia</h2>
-      <ul class="transparency-list">
-        <li>Etapa: piloto</li>
-        <li>Entidad legal: no constituida</li>
-        <li>Este sitio es una vista previa pública; no es una oferta comercial cerrada</li>
+      <ul class="facts-grid">
+        <li><strong>Etapa</strong>Piloto, en validación</li>
+        <li><strong>Entidad legal</strong>No constituida</li>
+        <li><strong>Venta en línea</strong>No disponible</li>
+        <li><strong>Stock</strong>Sin stock confirmado</li>
+        <li><strong>Precios</strong>No confirmados</li>
+        <li><strong>Asistente BAI</strong>Inactivo, sin proveedor</li>
       </ul>
+
+      <p class="note" style="margin-top:1.6rem">
+        Este sitio es una vista previa pública. No es una oferta comercial cerrada ni un contrato, y
+        no se indexa en buscadores mientras su contenido no esté aprobado.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn--primary" href="/contacto">Contactar por WhatsApp</a>
+        <a class="btn btn--ghost" href="/como-trabajamos">Ver el método de trabajo</a>
+      </div>
     </div>
   </section>
 </Layout>
-<style>
-.about-layout { max-width: 68rem; }
-.about-tagline { font-style:italic; color:var(--color-muted); }
-.transparency-list { color:var(--color-text-secondary); padding-left:1.25rem; }
-.about-layout h1 { max-width: 16ch; margin-bottom: 1.4rem; }
-.about-layout > p, .about-layout > ul { max-width: 48rem; }
-.about-layout > p:first-of-type { font-size: 1.2rem; }
-.about-layout h2 { margin-top: 2.7rem !important; padding-top: 1.1rem; border-top: 1px solid #d8e0e0; }
-.about-layout ul { border-left: 3px solid #18c7c8; padding: .8rem 0 .8rem 1.4rem !important; background: #f5f7f7; }
-.about-layout li { padding: .3rem .7rem; }
-</style>
-
-
-
