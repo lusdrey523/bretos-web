@@ -55,17 +55,17 @@ const esPropuesta = item.provenance === 'propuesto';
         <p>{item.availability}</p>
         {item.availability_note && <p class="note">{item.availability_note}</p>}
         <p class="note">
-          Precio: {item.pricing} No se publican cifras, plazos de entrega ni condiciones de compra
-          mientras no estén confirmados.
+          Precio: {item.pricing}. Las cifras, plazos y condiciones se consignan cuando están
+          confirmados; mientras tanto, se pueden consultar disponibilidad y alcance.
         </p>
       </section>
 
       {esPropuesta && (
         <section>
           <div class="notice notice--pending">
-            <strong>Línea prevista, no validada.</strong>
-            Esta ficha describe una intención de negocio. No hay servicio operativo, casos
-            entregados ni compromiso de entrega. El alcance se confirma caso a caso.
+            <strong>Línea prevista, en definición.</strong>
+            Esta ficha describe una intención de negocio en definición. No hay servicio
+            operativo todavía y el alcance se define caso a caso.
           </div>
         </section>
       )}
