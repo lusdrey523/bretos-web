@@ -1,23 +1,99 @@
 {
-  "version": "1.1",
-  "updated": "2026-10-24",
-  "source": "Alcance actual de las dos líneas iniciales de Breto’s Services, revisado el 24-10-2026",
+  "version": "1.2",
+  "updated": "2026-11-01",
+  "source": "Líneas 1 y 2 conservan la descripción verificada al 24-10-2026. Líneas 3 y 4 se incorporan como líneas previstas, con alcance por confirmar.",
   "items": [
     {
       "id": "tarjetas-nfc-qr-resenas-google",
       "name": "Tarjetas NFC/QR para reseñas auténticas en Google",
+      "short_name": "NFC/QR para reseñas",
       "status": "pilot",
       "category": "nfc-qr",
+      "provenance": "documentado",
       "description": "Línea conceptual para facilitar que el cliente llegue al perfil de reseñas del negocio. Las reseñas son voluntarias; no se garantizan reseñas ni resultados.",
+      "availability": "Sin stock registrado al 24-10-2026. Disponibilidad por confirmar.",
+      "availability_note": "El registro disponible es histórico. No se afirma que la situación haya cambiado.",
+      "pricing": "Precio comercial no confirmado.",
+      "scope": [
+        "Un soporte físico con NFC y código QR que abre el destino elegido por el negocio.",
+        "El destino se define con cada negocio; la reseña la escribe quien la decide, sin incentivos.",
+        "El objetivo es reducir pasos, no influir en la opinión de nadie."
+      ],
+      "not_included": [
+        "No se garantizan reseñas, calificaciones, volúmenes ni resultados.",
+        "No se entregan reseñas escritas ni se ofrece publicar opiniones por terceros.",
+        "No se gestiona ni se apropia de la cuenta de Google del negocio."
+      ],
       "notes": "No hay stock disponible al 24-10-2026. Línea en etapa piloto y validación; no disponible para compra desde el sitio. Precio comercial no confirmado."
     },
     {
       "id": "tarjetas-nfc-qr-contacto-digital",
       "name": "Tarjetas NFC/QR de contacto digital",
+      "short_name": "Contacto digital NFC/QR",
       "status": "pilot",
       "category": "nfc-qr",
+      "provenance": "documentado",
       "description": "Línea conceptual para compartir el contacto digital de un negocio y dirigir a destinos elegidos por ese negocio.",
+      "availability": "Sin stock registrado al 24-10-2026. Disponibilidad por confirmar.",
+      "availability_note": "El registro disponible es histórico. No se afirma que la situación haya cambiado.",
+      "pricing": "Precio comercial no confirmado.",
+      "scope": [
+        "Un soporte físico con NFC y código QR que abre el contacto o destino que el negocio elija.",
+        "El destino puede ser un perfil, una ficha de contacto o un enlace propio del negocio.",
+        "La configuración se acuerda antes de producir cualquier pieza."
+      ],
+      "not_included": [
+        "No se ofrecen integraciones con sistemas del negocio que no estén acordadas por escrito.",
+        "No se incluye alojamiento de datos de clientes del negocio.",
+        "No hay plazos de entrega confirmados."
+      ],
       "notes": "No hay stock disponible al 24-10-2026. Línea en etapa piloto y validación; no disponible para compra desde el sitio. Precio comercial no confirmado."
+    },
+    {
+      "id": "paginas-web-inteligentes",
+      "name": "Páginas web inteligentes",
+      "short_name": "Páginas web inteligentes",
+      "status": "planned",
+      "category": "servicios",
+      "provenance": "propuesto",
+      "description": "Línea prevista para cotizar: sitios breves y rápidos, pensados para que un negocio explique qué hace y cómo contactarlo desde el teléfono.",
+      "availability": "Sin servicio operativo todavía. Alcance y disponibilidad por confirmar.",
+      "availability_note": "Línea prevista, no validada. No hay entregas realizadas que se puedan citar.",
+      "pricing": "Precio no confirmado. No se publican cifras ni plazos.",
+      "scope": [
+        "Estructura de páginas acordada antes de construir: qué se cuenta, en qué orden y con qué datos reales.",
+        "Contenido redactado a partir de información que el negocio pueda respaldar.",
+        "Publicación y mantenimiento se definen por separado, no están incluidos por defecto."
+      ],
+      "not_included": [
+        "No se prometen posiciones en buscadores ni tráfico.",
+        "No se incluyen campañas publicitarias, analítica de terceros ni captación de datos de visitantes.",
+        "No hay sitio de ejemplo entregado que pueda presentarse como caso real."
+      ],
+      "notes": "Línea incorporada el 01-11-2026 como intención de negocio. No es una capacidad operativa probada."
+    },
+    {
+      "id": "agentes-de-ia",
+      "name": "Agentes de IA para atención",
+      "short_name": "Agentes de IA",
+      "status": "planned",
+      "category": "ia",
+      "provenance": "propuesto",
+      "description": "Línea prevista para cotizar: un asistente que responda consultas frecuentes de un negocio con información aprobada y derive a una persona cuando no sepa.",
+      "availability": "Sin servicio operativo todavía. Alcance y disponibilidad por confirmar.",
+      "availability_note": "Línea prevista, no validada. El asistente de este sitio (BAI) está inactivo y no responde con IA.",
+      "pricing": "Precio no confirmado. El costo del proveedor de IA, si existiera, se define aparte.",
+      "scope": [
+        "Respuestas limitadas a un conjunto de información revisada y aprobada por el negocio.",
+        "Derivación explícita a una persona cuando la consulta sale de ese conjunto.",
+        "Aviso visible de que se trata de un asistente automatizado."
+      ],
+      "not_included": [
+        "No se promete atender todo ni sustituir a una persona.",
+        "No se promete exactitud absoluta ni disponibilidad continua.",
+        "No se publica ningún proveedor, modelo, precio ni límite: nada de eso está decidido."
+      ],
+      "notes": "Línea incorporada el 01-11-2026 como intención de negocio. No es una capacidad operativa probada."
     }
   ]
 }

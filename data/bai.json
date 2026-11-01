@@ -1,0 +1,28 @@
+{
+  "version": "0.1",
+  "updated": "2026-11-01",
+  "name": "BAI",
+  "full_name": "Asistente Bretos",
+  "state": "inactive",
+  "state_label": "Interfaz preparada · no activa",
+  "plain_status": "BAI todavía no responde. Esta página muestra cómo se verá su interfaz y qué reglas tendrá cuando se active.",
+  "provider": null,
+  "provider_note": "No hay proveedor de IA contratado, ni clave configurada, ni llamada externa desde este sitio.",
+  "planned_rules": [
+    "Responder solo con información aprobada por Bretos Services.",
+    "Decir que no sabe cuando la consulta sale de ese conjunto, sin improvisar.",
+    "Ofrecer el WhatsApp oficial como paso opcional, nunca automático.",
+    "Avisar que es un asistente automatizado y no una persona.",
+    "No pedir datos personales para conversar."
+  ],
+  "known_limits": [
+    "No hay modelo, presupuesto, límite de gasto ni fecha de activación definidos.",
+    "No se ha probado ninguna respuesta, porque no existe motor conectado.",
+    "El costo de un proveedor de IA no está decidido ni confirmado."
+  ],
+  "open_decisions": [
+    "Qué proveedor usar y con qué tope de gasto.",
+    "Si se guardan conversaciones y por cuánto tiempo.",
+    "Quién responde cuando BAI deriva a una persona."
+  ]
+}
