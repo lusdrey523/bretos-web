@@ -6,16 +6,15 @@ interface Props {
   name: string;
   status: string;
   description?: string;
-  category?: string;
 }
 
-const { name, status, description } = Astro.props;
+const { id, name, status, description } = Astro.props;
 ---
 
-<article class="card product-card">
-  <h3>{name}</h3>
-  {description && <p class="desc">{description}</p>}
-  <div class="meta">
-    <StatusBadge status={status} />
-  </div>
-</article>
+<li>
+  <h3 style="margin-bottom:.4rem">
+    <a href={`/catalogo/${id}`} style="color:inherit;text-decoration:none">{name}</a>
+  </h3>
+  {description && <p class="note">{description}</p>}
+  <StatusBadge status={status} />
+</li>
