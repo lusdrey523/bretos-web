@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Cookies (borrador) — Bretos Services"
+  description="Borrador del aviso de cookies de Bretos Services: el sitio no instala cookies propias ni usa analítica."
+  currentPath="/cookies"
+>
+  <section class="section">
+    <div class="wrap legal">
+      <span class="kicker">Borrador · sin revisión legal</span>
+      <h1>Cookies</h1>
+
+      <div class="notice notice--pending" style="margin-bottom:1.6rem">
+        <strong>Esto es un borrador.</strong> Describe lo que hace el sitio hoy, no una certificación
+        de cumplimiento. Hay un punto pendiente de confirmar con el alojamiento.
+      </div>
+
+      <h2>Cookies propias</h2>
+      <p>
+        Ninguna. El sitio no instala cookies, no usa almacenamiento local del navegador y no conserva
+        preferencias entre visitas. Por eso no hay banner de consentimiento: no hay nada opcional que
+        aceptar.
+      </p>
+
+      <h2>Analítica y publicidad</h2>
+      <p>
+        No hay herramientas de analítica, píxeles publicitarios, mapas incrustados ni vídeos de
+        terceros. No se mide el comportamiento de quien visita el sitio.
+      </p>
+
+      <h2>Enlaces externos</h2>
+      <p>
+        El botón de WhatsApp es un enlace normal: no carga nada de WhatsApp hasta que decides pulsarlo.
+        Una vez dentro de WhatsApp, sus cookies y condiciones son las de esa plataforma, no las de este sitio.
+      </p>
+
+      <h2>Pendiente de confirmar</h2>
+      <ul class="pending-list">
+        <li>Si el proveedor de alojamiento definitivo añade cookies técnicas propias.</li>
+        <li>Si en el futuro se activa BAI, si guardará estado en el navegador y con qué aviso.</li>
+      </ul>
+
+      <p class="note" style="margin-top:1.6rem">
+        Si en el futuro se incorpora cualquier cookie opcional, este aviso se actualizará antes de
+        activarla y se pedirá consentimiento cuando corresponda.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn--ghost" href="/privacidad">Ver el aviso de privacidad</a>
+        <a class="btn btn--ghost" href="/terminos">Ver los términos</a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Privacidad (borrador) — Bretos Services"
+  description="Borrador de aviso de privacidad de Bretos Services. Documento sin revisión legal, con datos pendientes señalados."
+  currentPath="/privacidad"
+>
+  <section class="section">
+    <div class="wrap legal">
+      <span class="kicker">Borrador · sin revisión legal</span>
+      <h1>Privacidad</h1>
+
+      <div class="notice notice--pending" style="margin-bottom:1.6rem">
+        <strong>Esto es un borrador.</strong> No ha sido revisado por un abogado y no debe leerse como
+        una declaración de cumplimiento normativo. Faltan datos que se indican al final.
+      </div>
+
+      <h2>Qué hace este sitio con tus datos</h2>
+      <p>
+        El sitio es estático. No tiene formularios, no tiene cuentas de usuario, no usa analítica y no
+        instala cookies propias. Al recorrerlo no se te pide ningún dato personal.
+      </p>
+
+      <h2>Recursos externos</h2>
+      <p>
+        Las páginas no cargan tipografías, scripts ni imágenes desde servidores de terceros. El único
+        enlace externo es el botón de WhatsApp, que solo se abre si lo pulsas; en ese momento sales de
+        este sitio y pasas a una conversación en WhatsApp, sujeta a las condiciones de esa plataforma.
+      </p>
+
+      <h2>Asistente BAI</h2>
+      <p>
+        BAI está inactivo. No hay proveedor de IA conectado y ningún texto escrito en su interfaz se
+        envía a un tercero, porque el campo está desactivado y no existe ninguna llamada.
+      </p>
+
+      <h2>Registros técnicos del alojamiento</h2>
+      <p>
+        Como en cualquier sitio web, el proveedor de alojamiento puede registrar direcciones IP,
+        fechas y páginas solicitadas con fines de funcionamiento y seguridad. Ese registro no lo
+        controla el proyecto y su alcance depende del proveedor elegido.
+      </p>
+
+      <h2>Datos pendientes de definir</h2>
+      <ul class="pending-list">
+        <li>Quién figura como responsable del tratamiento (hoy no existe entidad legal constituida).</li>
+        <li>Un canal formal para ejercer consultas o solicitudes sobre datos.</li>
+        <li>Qué proveedor de alojamiento se usará y por cuánto tiempo conserva registros técnicos.</li>
+        <li>Si en el futuro BAI se activa: proveedor, retención de conversaciones y aviso previo.</li>
+      </ul>
+
+      <p class="note" style="margin-top:1.6rem">
+        Este documento se actualizará cuando esos datos existan. Mientras tanto, no se afirma
+        cumplimiento de ninguna norma específica.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn--ghost" href="/cookies">Ver el aviso de cookies</a>
+        <a class="btn btn--ghost" href="/terminos">Ver los términos</a>
+      </div>
+    </div>
+  </section>
+</Layout>
