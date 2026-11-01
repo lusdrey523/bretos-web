@@ -10,7 +10,7 @@ const previstas = items.filter((item) => item.provenance === 'propuesto').length
 
 <Layout
   title="Catálogo — Bretos Services"
-  description="Las cuatro líneas previstas de Bretos Services, con su estado real: dos en etapa piloto y dos previstas con alcance por confirmar."
+  description="Las cuatro líneas de conexión digital que Bretos Services está definiendo."
   currentPath="/catalogo"
 >
   <section class="page-head">
@@ -18,14 +18,9 @@ const previstas = items.filter((item) => item.provenance === 'propuesto').length
       <span class="kicker">Catálogo</span>
       <h1>Catálogo de servicios</h1>
       <p class="lead">
-        Cuatro líneas, ninguna igual de avanzada. Dos están en etapa piloto y dos son intención de
-        negocio con alcance por confirmar. El estado de cada una está escrito en su ficha.
+        Cuatro líneas de servicio que el proyecto está definiendo. Cada una tiene su propio estado y
+        alcance; la información que se muestra es lo verificado hasta hoy.
       </p>
-      <div class="notice" style="margin-top:1.4rem">
-        <strong>Sin stock confirmado y sin venta en línea.</strong>
-        Ningún precio comercial está confirmado y este sitio no procesa pagos. «En etapa piloto» o
-        «línea prevista» no equivalen a disponibilidad comercial.
-      </div>
     </div>
   </section>
 
@@ -66,9 +61,9 @@ const previstas = items.filter((item) => item.provenance === 'propuesto').length
       )}
 
       <p class="note" style="margin-top:1.4rem">
-        {enPiloto} línea(s) en etapa piloto y {previstas} línea(s) previstas. Los datos de stock
-        disponibles son registros históricos: no se afirma que la situación haya cambiado y la
-        disponibilidad actual está por confirmar.
+        {enPiloto} línea(s) en etapa piloto y {previstas} línea(s) previstas. El alcance y la
+        disponibilidad de cada línea están por confirmar. Se consigna lo verificado y se deja
+        abierto el seguimiento.
       </p>
     </div>
   </section>
