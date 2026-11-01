@@ -22,6 +22,41 @@ const ALLOWED_STATUSES = new Set([
 
 const REQUIRED_ITEM_FIELDS = ['id', 'name', 'status', 'category'];
 
+const ALLOWED_PROVENANCE = new Set(['documentado', 'propuesto']);
+
+/**
+ * Campos opcionales de las fichas de línea. Si existen, deben tener la forma esperada.
+ * Regla firme: "pricing" no puede contener cifras, porque no hay precios confirmados.
+ */
+function validateItemExtras(item, prefix, errors) {
+  if (item.short_name !== undefined && typeof item.short_name !== 'string') {
+    errors.push(`${prefix}: "short_name" debe ser texto`);
+  }
+  if (item.provenance !== undefined && !ALLOWED_PROVENANCE.has(item.provenance)) {
+    errors.push(
+      `${prefix}: provenance inválido "${item.provenance}". Permitidos: ${[...ALLOWED_PROVENANCE].join(', ')}`
+    );
+  }
+  for (const field of ['scope', 'not_included']) {
+    if (item[field] === undefined) continue;
+    if (!Array.isArray(item[field]) || item[field].length === 0) {
+      errors.push(`${prefix}: "${field}" debe ser una lista con al menos un elemento`);
+      continue;
+    }
+    if (item[field].some((entry) => typeof entry !== 'string' || entry.trim() === '')) {
+      errors.push(`${prefix}: "${field}" solo admite textos no vacíos`);
+    }
+  }
+  for (const field of ['description', 'availability', 'availability_note', 'pricing', 'notes']) {
+    if (item[field] !== undefined && typeof item[field] !== 'string') {
+      errors.push(`${prefix}: "${field}" debe ser texto`);
+    }
+  }
+  if (typeof item.pricing === 'string' && /\d/.test(item.pricing)) {
+    errors.push(`${prefix}: "pricing" no puede contener cifras mientras no haya precio confirmado`);
+  }
+}
+
 function loadJson(path) {
   if (!existsSync(path)) {
     throw new Error(`Archivo no encontrado: ${path}`);
@@ -93,6 +128,8 @@ function validateCatalog(data) {
       );
     }
 
+    validateItemExtras(item, prefix, errors);
+
     if (item.category && categoryIds.size > 0 && !categoryIds.has(item.category)) {
       errors.push(
         `${prefix} ("${item.id || '?'}"): category "${item.category}" no existe en categorias.json`
@@ -100,6 +137,29 @@ function validateCatalog(data) {
     }
   }
 
+  return errors;
+}
+
+/**
+ * BAI no debe presentarse como activo si no hay proveedor declarado.
+ * Evita que la interfaz aparente una capacidad que no existe.
+ */
+function validateBai(data) {
+  const errors = [];
+  if (!data || typeof data !== 'object') {
+    errors.push('bai.json debe ser un objeto');
+    return errors;
+  }
+  const estados = new Set(['inactive', 'active']);
+  if (!estados.has(data.state)) {
+    errors.push(`bai.json: state inválido "${data.state}". Permitidos: ${[...estados].join(', ')}`);
+  }
+  if (data.state === 'active' && !data.provider) {
+    errors.push('bai.json: no puede estar "active" sin un proveedor declarado');
+  }
+  if (data.state === 'inactive' && data.provider) {
+    errors.push('bai.json: "inactive" no debería declarar un proveedor conectado');
+  }
   return errors;
 }
 
@@ -135,6 +195,13 @@ function main() {
 
   try {
     loadJson(join(DATA, 'categorias.json'));
+  } catch (e) {
+    allErrors.push(e.message);
+  }
+
+  try {
+    const bai = loadJson(join(DATA, 'bai.json'));
+    allErrors.push(...validateBai(bai));
   } catch (e) {
     allErrors.push(e.message);
   }
