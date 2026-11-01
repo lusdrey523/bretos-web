@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import bai from '../../data/bai.json';
+---
+
+<Layout
+  title="BAI — Asistente de Bretos Services (inactivo)"
+  description="BAI es el asistente previsto de Bretos Services. Su interfaz está preparada pero no responde: no hay proveedor de IA conectado ni llamadas externas."
+  currentPath="/bai"
+>
+  <section class="page-head">
+    <div class="wrap">
+      <span class="kicker">Asistente · {bai.state_label}</span>
+      <h1>BAI, el asistente de Bretos Services</h1>
+      <p class="lead">{bai.plain_status}</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="bai-shell">
+        <div class="bai-head">
+          <strong>BAI</strong>
+          <span class="bai-state">{bai.state_label}</span>
+        </div>
+
+        <div class="bai-transcript" role="note" aria-label="Estado de la conversación">
+          <p>
+            Aquí aparecerán las respuestas de BAI cuando esté activo. Ahora mismo no hay ningún motor
+            conectado: escribir en el campo de abajo no envía nada a ninguna parte.
+          </p>
+        </div>
+
+        <div class="bai-composer" role="group" aria-labelledby="bai-campo">
+          <label for="bai-input" id="bai-campo">Tu pregunta</label>
+          <input
+            id="bai-input"
+            name="pregunta"
+            type="text"
+            placeholder="Campo desactivado"
+            autocomplete="off"
+            disabled
+            aria-describedby="bai-aviso"
+          />
+          <div style="display:flex;flex-wrap:wrap;gap:.6rem;align-items:center">
+            <button class="btn btn--primary" type="button" disabled aria-disabled="true">Enviar</button>
+            <span class="hint" id="bai-aviso">
+              Desactivado a propósito. Este formulario no envía datos y no realiza peticiones.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:1.2rem">
+        {bai.provider_note}
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Reglas previstas</span>
+          <h2>Cómo deberá responder cuando se active</h2>
+        </div>
+      </div>
+      <ul class="rules-list">
+        {bai.planned_rules.map((regla: string) => <li>{regla}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Transparencia</span>
+          <h2>Qué falta para activarlo</h2>
+        </div>
+      </div>
+      <h3>Límites conocidos hoy</h3>
+      <ul class="rules-list">
+        {bai.known_limits.map((limite: string) => <li>{limite}</li>)}
+      </ul>
+
+      <h3 style="margin-top:1.8rem">Decisiones abiertas</h3>
+      <ul class="rules-list">
+        {bai.open_decisions.map((decision: string) => <li>{decision}</li>)}
+      </ul>
+
+      <div class="notice" style="margin-top:1.6rem">
+        <strong>Sin coste activado.</strong>
+        No hay cuenta de proveedor, ni clave, ni método de pago asociado a este sitio. Mientras siga
+        así, BAI no puede generar ningún gasto.
+      </div>
+
+      <div class="actions">
+        <a class="btn btn--ghost" href="/catalogo/agentes-de-ia">Ver la línea de agentes de IA</a>
+        <a class="btn btn--primary" href="/contacto">Preguntar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</Layout>
