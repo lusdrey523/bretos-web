@@ -1,52 +1,96 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProductCard from '../components/ProductCard.astro';
+import StatusBadge from '../components/StatusBadge.astro';
 import catalogo from '../../data/catalogo.json';
 
 const items = catalogo.items ?? [];
+const enPiloto = items.filter((item) => item.status === 'pilot').length;
+const previstas = items.filter((item) => item.provenance === 'propuesto').length;
 ---
 
 <Layout
   title="Catálogo — Bretos Services"
-  description="Líneas NFC/QR en etapa piloto y validación; sin oferta comercial confirmada."
+  description="Las cuatro líneas previstas de Bretos Services, con su estado real: dos en etapa piloto y dos previstas con alcance por confirmar."
   currentPath="/catalogo"
 >
-  <section class="section">
-    <div class="container">
-      <div class="draft-banner" role="status">
-        Dos líneas en validación · No hay stock disponible ni compra desde este sitio. Los precios no están confirmados.
-      </div>
+  <section class="page-head">
+    <div class="wrap">
+      <span class="kicker">Catálogo</span>
       <h1>Catálogo de servicios</h1>
-      <p class="catalog-intro">
-        Cada ficha indica el estado registrado para esa línea. «En piloto», «planificado» o «en verificación» no equivalen a disponibilidad comercial.
+      <p class="lead">
+        Cuatro líneas, ninguna igual de avanzada. Dos están en etapa piloto y dos son intención de
+        negocio con alcance por confirmar. El estado de cada una está escrito en su ficha.
       </p>
+      <div class="notice" style="margin-top:1.4rem">
+        <strong>Sin stock confirmado y sin venta en línea.</strong>
+        Ningún precio comercial está confirmado y este sitio no procesa pagos. «En etapa piloto» o
+        «línea prevista» no equivalen a disponibilidad comercial.
+      </div>
+    </div>
+  </section>
 
+  <section class="section section--tight">
+    <div class="wrap">
       {items.length === 0 ? (
-        <div class="empty-state">
-          <strong>Sin ofertas cargadas</strong>
-          <p>Las líneas se publicarán cuando exista información validada y aprobada.</p>
+        <div class="notice">
+          <strong>Sin líneas cargadas.</strong> Se publicarán cuando exista información validada y aprobada.
         </div>
       ) : (
-        <div class="product-grid catalog-index">
-          {items.map((item) => (
-            <ProductCard
-              id={item.id}
-              name={item.name}
-              status={item.status}
-              description={item.description}
-              category={item.category}
-            />
+        <div class="catalog-list">
+          {items.map((item, index) => (
+            <article class="catalog-entry" id={item.id}>
+              <span class="catalog-entry-idx" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+
+              <div class="catalog-entry-main">
+                <h2><a href={`/catalogo/${item.id}`}>{item.name}</a></h2>
+                <p>{item.description}</p>
+                <div class="catalog-entry-meta">
+                  <StatusBadge status={item.status} />
+                  {item.provenance === 'propuesto' ? (
+                    <span class="line-row-desc">Alcance por confirmar</span>
+                  ) : (
+                    <span class="line-row-desc">Descripción verificada</span>
+                  )}
+                </div>
+              </div>
+
+              <dl class="catalog-entry-facts">
+                <dt>Disponibilidad</dt>
+                <dd>{item.availability}</dd>
+                <dt>Precio</dt>
+                <dd>{item.pricing}</dd>
+              </dl>
+            </article>
           ))}
         </div>
       )}
+
+      <p class="note" style="margin-top:1.4rem">
+        {enPiloto} línea(s) en etapa piloto y {previstas} línea(s) previstas. Los datos de stock
+        disponibles son registros históricos: no se afirma que la situación haya cambiado y la
+        disponibilidad actual está por confirmar.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Antes de cotizar</span>
+          <h2>Qué se necesita para hablar de una línea concreta</h2>
+        </div>
+      </div>
+      <ul class="rules-list">
+        <li>Saber qué destino quiere abrir el negocio y quién lo administra.</li>
+        <li>Confirmar si la pieza es para un local, varios, o para un equipo.</li>
+        <li>Aceptar que reseñas y resultados dependen de terceros y de las personas, no del producto.</li>
+        <li>Dejar por escrito el alcance antes de producir o construir cualquier cosa.</li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn--primary" href="/contacto">Consultar por WhatsApp</a>
+        <a class="btn btn--ghost" href="/como-trabajamos">Ver cómo se trabaja</a>
+      </div>
     </div>
   </section>
 </Layout>
-<style>
-.catalog-intro{margin-bottom:2rem;max-width:40rem}.catalog-index{display:block;border-top:2px solid #0a0a0a}.catalog-index :global(.product-card){display:grid;grid-template-columns:minmax(10rem,.7fr) minmax(14rem,1.5fr);align-items:start;gap:1.3rem 2rem;padding:1.5rem .2rem;border:0;border-bottom:1px solid var(--color-border);border-radius:0;background:transparent;box-shadow:none}.catalog-index :global(.product-card h3){font-size:1.2rem;margin:0}.catalog-index :global(.product-card .desc){margin:0;color:#39464b}.catalog-index :global(.product-card .meta){grid-column:2;justify-content:flex-start}.catalog-index :global(.badge){letter-spacing:.025em}@media(max-width:600px){.catalog-index :global(.product-card){grid-template-columns:1fr;gap:.55rem}.catalog-index :global(.product-card .meta){grid-column:1}}
-/* Estado piloto: turquesa sólido y texto blanco legible sobre el fondo claro. */
-.catalog-index :global(.badge--pilot){background:#087f82!important;border-color:#087f82!important;color:#fff!important;font-weight:750;letter-spacing:.035em}
-</style>
-
-
-
